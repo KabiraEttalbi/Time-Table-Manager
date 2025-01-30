@@ -1,12 +1,12 @@
 [
-  {
-    "_id": { "$oid": "64c9f1e8c8f3f3e4b7a1d2e9" },
-    "nom": "Doe",
-    "prenom": "John",
-    "email": "john.doe@example.com",
-    "username": "johndoe",
-    "password": "hashed_password",
-    "isAuthenticated": false,
-    "role": "admin"
-  }
-]
+    {
+      "_id": { "$oid": "64c9f1e8c8f3f3e4b7a1d2e9" },
+      "nom": "Doe",
+      "prenom": "John",
+      "email": "john.doe@example.com",
+      "username": "johndoe",
+      "password": "hashed_password",
+      "isAuthenticated": false,
+      "role": "admin"
+    }
+  ]
