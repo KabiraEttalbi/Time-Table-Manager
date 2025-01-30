@@ -1,9 +1,8 @@
 [
-    {
-      "_id": { "$oid": "64c9f1e8c8f3f3e4b7a1d2eb" },
-      "nom": "Classe A",
-      "niveau": "Licence 3",
-      "emploisDuTemps": [{ "$oid": "64c9f1e8c8f3f3e4b7a1d2ea" }]
-    }
-  ]
-  
+  {
+    "_id": { "$oid": "64c9f1e8c8f3f3e4b7a1d2eb" },
+    "nom": "Classe A",
+    "niveau": "Licence 3",
+    "emploisDuTemps": [{ "$oid": "64c9f1e8c8f3f3e4b7a1d2ea" }]
+  }
+]
