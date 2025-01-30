@@ -1,0 +1,10 @@
+[
+  {
+    "_id": { "$oid": "64c9f1e8c8f3f3e4b7a1d2ee" },
+    "salle": { "$oid": "64c9f1e8c8f3f3e4b7a1d2ed" },
+    "date": "2024-09-15",
+    "heureDebut": "10:00",
+    "heureFin": "12:00",
+    "utilisateur": { "$oid": "64c9f1e8c8f3f3e4b7a1d2e9" }
+  }
+]
