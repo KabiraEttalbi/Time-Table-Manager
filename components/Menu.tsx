@@ -43,15 +43,27 @@ const menuItems = [
         visible: ["admin", "teacher"],
       },
       {
-        icon: "/calendar.png",
+        icon: "/classroom.png",
+        label: "Salles",
+        href: "/list/classrooms",
+        visible: ["admin", "teacher"],
+      },
+      {
+        icon: "/event.png",
         label: "Evénements",
         href: "/list/events",
         visible: ["admin", "teacher", "student"],
       },
       {
-        icon: "/message.png",
-        label: "Messages",
-        href: "/list/messages",
+        icon: "/reservation.png",
+        label: "Reservations",
+        href: "/list/reservations",
+        visible: ["admin", "teacher"],
+      },
+      {
+        icon: "/calendar.png",
+        label: "Emplois du temps",
+        href: "/list/timetables",
         visible: ["admin", "teacher", "student"],
       },
       {
