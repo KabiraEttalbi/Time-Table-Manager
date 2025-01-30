@@ -1,0 +1,11 @@
+[
+    {
+      "_id": { "$oid": "64c9f1e8c8f3f3e4b7a1d2ea" },
+      "jour": "Lundi",
+      "heureDebut": "08:00",
+      "heureFin": "10:00",
+      "classe": { "$oid": "64c9f1e8c8f3f3e4b7a1d2eb" },
+      "module": { "$oid": "64c9f1e8c8f3f3e4b7a1d2ec" }
+    }
+  ]
+  
