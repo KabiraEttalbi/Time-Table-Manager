@@ -1,3 +1,0 @@
-[submodule "backend/backend"]
-	path = backend/backend
-	url = https://github.com/KabiraEttalbi/timetable-backend.git
