@@ -25,33 +25,33 @@ const menuItems = [
         visible: ["admin", "teacher"],
       },
       {
-        icon: "/department.png",
+        icon: "/departement.png",
         label: "Departements",
-        href: "/list/departments",
+        href: "/list/departements",
         visible: ["admin"],
       },
       {
-        icon: "/subject.png",
+        icon: "/filiere.png",
         label: "Filieres",
-        href: "/list/subjects",
+        href: "/list/filieres",
         visible: ["admin"],
       },
       {
-        icon: "/class.png",
+        icon: "/niveau.png",
         label: "Niveaux",
-        href: "/list/classes",
+        href: "/list/niveaux",
         visible: ["admin", "teacher"],
       },
       {
-        icon: "/lesson.png",
+        icon: "/module.png",
         label: "Modules",
-        href: "/list/lessons",
+        href: "/list/modules",
         visible: ["admin", "teacher"],
       },
       {
-        icon: "/classroom.png",
+        icon: "/salle.png",
         label: "Salles",
-        href: "/list/classrooms",
+        href: "/list/salles",
         visible: ["admin", "teacher"],
       },
       {
@@ -74,35 +74,12 @@ const menuItems = [
       },
       {
         icon: "/announcement.png",
-        label: "Notifications",
-        href: "/list/announcements",
+        label: "Annonces",
+        href: "/list/announcement",
         visible: ["admin", "teacher", "student"],
-      },
+      }
     ],
-  },
-  {
-    title: "OTHER",
-    items: [
-      {
-        icon: "/profile.png",
-        label: "Profil",
-        href: "/profile",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-      {
-        icon: "/setting.png",
-        label: "Paramètres",
-        href: "/settings",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-      {
-        icon: "/logout.png",
-        label: "Déconnexion",
-        href: "/logout",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-    ],
-  },
+  }
 ];
 
 const Menu = () => {
