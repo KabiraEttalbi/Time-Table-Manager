@@ -34,7 +34,7 @@ const FormModal = ({
     | "teacher"
     | "departements"
     | "student"
-    | "subject"
+    | "options"
     | "class"
     | "event"
     | "announcement";
