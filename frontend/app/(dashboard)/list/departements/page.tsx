@@ -2,11 +2,11 @@ import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import { lessonsData, role } from "@/lib/data";
+import { departementsData, role } from "@/lib/data";
 import Image from "next/image";
 
-type Departement = {
-  id: number;
+export type Departement = {
+  id: string;
   name: string;
   description: string;
 };
@@ -26,7 +26,9 @@ const columns = [
   },
 ];
 
-const Departementlistpage = () => {
+const { departements } = await departementsData(); 
+
+const Departementlistpage = async () => {
     const renderRow = (item: Departement) => (
         <tr
           key={item.id}
@@ -38,15 +40,14 @@ const Departementlistpage = () => {
             <div className="flex items-center gap-2">
               {role === "admin" && (
                 <>
-                  <FormModal table="lesson" type="update" data={item} />
-                  <FormModal table="lesson" type="delete" id={item.id} />
+                  <FormModal table="departements" type="update" data={item} />
+                  <FormModal table="departements" type="delete" id={item.id} />
                 </>
               )}
             </div>
           </td>
         </tr>
       );
-    
       return (
         <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
           {/* TOP */}
@@ -61,12 +62,12 @@ const Departementlistpage = () => {
                 <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
                   <Image src="/sort.png" alt="" width={14} height={14} />
                 </button>
-                {role === "admin" && <FormModal table="lesson" type="create" />}
+                {role === "admin" && <FormModal table="departements" type="create" />}
               </div>
             </div>
           </div>
           {/* LIST */}
-          <Table columns={columns} renderRow={renderRow} data={lessonsData} />
+          <Table columns={columns} renderRow={renderRow} data={departements} />
           {/* PAGINATION */}
           <Pagination />
         </div>
