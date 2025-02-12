@@ -2,17 +2,8 @@ import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import { role, optionsData } from "@/lib/data";
+import { role, optionsData, Option} from "@/lib/data";
 import Image from "next/image";
-import { Departement } from "../departements/page";
-
-export type Option = {
-  id: string;
-  name: string;
-  description: string;
-  duration: string;
-  departement: Departement
-};
 
 const columns = [
   {

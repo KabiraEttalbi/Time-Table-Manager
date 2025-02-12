@@ -2,14 +2,8 @@ import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import { departementsData, role } from "@/lib/data";
+import { Departement, departementsData, role } from "@/lib/data";
 import Image from "next/image";
-
-export type Departement = {
-  id: string;
-  name: string;
-  description: string;
-};
 
 const columns = [
   {

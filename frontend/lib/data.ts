@@ -1,9 +1,41 @@
 /* eslint-disable prefer-const */
 // TEMPORARY DATA
 
-import { Departement } from "@/app/(dashboard)/list/departements/page";
-import { Option } from "@/app/(dashboard)/list/filieres/page";
 
+//Types
+export type User = {
+
+}
+
+export type Student = {
+    id: string;
+    studentId: string;
+    name: string;
+    email?: string;
+    photo: string;
+    phone?: string;
+    anneeBac: number;
+    class: string;
+    address: string;
+  };
+  
+
+export type Departement = {
+    id: string;
+    name: string;
+    description: string;
+  };
+
+export type Option = {
+    id: string;
+    name: string;
+    description: string;
+    duration: string;
+    departement: Departement
+  };  
+
+
+//Data
 
 export let role = "admin";
 

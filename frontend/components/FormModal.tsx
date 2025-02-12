@@ -31,9 +31,9 @@ const FormModal = ({
   id,
 }: {
   table:
-    | "teacher"
+    | "teachers"
     | "departements"
-    | "student"
+    | "students"
     | "options"
     | "class"
     | "event"
