@@ -4,30 +4,46 @@
 
 //Types
 export type User = {
-
-}
+    _id: string;
+    nom: string;
+    prenom: string;
+    email?: string;
+    username: string;
+    password: string;
+    isAuthenticated: boolean;
+    role: 'admin' | 'enseignant' | 'etudiant';
+};
 
 export type Student = {
-    id: string;
-    studentId: string;
-    name: string;
-    email?: string;
-    photo: string;
-    phone?: string;
-    anneeBac: number;
-    class: string;
+    _id: string;
+    user: User;
+    niveau: Niveau;
+    image: string;
+    gender: string; 
+    birthdate: Date;
+    cne: string;
+    cni: string;
+    phoneNumber?: string;
+    anneeBaccalaureat: number;
+    option: Option;
     address: string;
   };
   
+export type Niveau = {
+    _id: string;
+    name: string;
+    cycle: number;
+  };
+
 
 export type Departement = {
-    id: string;
+    _id: string;
     name: string;
     description: string;
   };
 
 export type Option = {
-    id: string;
+    _id: string;
     name: string;
     description: string;
     duration: string;
@@ -35,7 +51,7 @@ export type Option = {
   };  
 
   export type Module = {
-    id: string;
+    _id: string;
     name: string;
     description: string;
     option: Option;
@@ -48,7 +64,11 @@ export let role = "admin";
 
 export const teachersData = [];
 
-export const studentsData = [];
+export const studentsData =  async function getStaticProps() {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/students`)
+    const students: Student[] = await res.json();
+    return { students };
+};
 
 export const optionsData = async function getStaticProps() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/options`)
