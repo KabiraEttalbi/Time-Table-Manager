@@ -37,7 +37,8 @@ const FormModal = ({
     | "options"
     | "class"
     | "event"
-    | "announcement";
+    | "announcement"
+    |  "modules";
   type: "create" | "update" | "delete";
   data?: any;
   id?: string;
