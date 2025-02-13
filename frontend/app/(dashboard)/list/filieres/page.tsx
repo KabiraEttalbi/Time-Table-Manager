@@ -33,7 +33,7 @@ const { options } = await optionsData();
 const OptionListPage = () => {
   const renderRow = (item: Option) => (
     <tr
-      key={item.id}
+      key={item._id}
       className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight"
     >
       <td className="flex items-center gap-4 p-4">{item.name}</td>
@@ -45,7 +45,7 @@ const OptionListPage = () => {
           {role === "admin" && (
             <>
               <FormModal table="departements" type="update" data={item} />
-              <FormModal table="departements" type="delete" id={item.id} />
+              <FormModal table="departements" type="delete" id={item._id} />
             </>
           )}
         </div>

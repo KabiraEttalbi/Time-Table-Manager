@@ -4,7 +4,7 @@
 
 //Types
 export type User = {
-    id: string;
+    _id: string;
     nom: string;
     prenom: string;
     email?: string;
@@ -15,11 +15,14 @@ export type User = {
 };
 
 export type Student = {
-    id: string;
+    _id: string;
     user: User;
     niveau: Niveau;
     image: string;
     gender: string; 
+    birthdate: Date;
+    cne: string;
+    cni: string;
     phoneNumber?: string;
     anneeBaccalaureat: number;
     option: Option;
@@ -27,20 +30,20 @@ export type Student = {
   };
   
 export type Niveau = {
-    id: string;
-    nom: string;
+    _id: string;
+    name: string;
     cycle: number;
   };
 
 
 export type Departement = {
-    id: string;
+    _id: string;
     name: string;
     description: string;
   };
 
 export type Option = {
-    id: string;
+    _id: string;
     name: string;
     description: string;
     duration: string;
@@ -48,7 +51,7 @@ export type Option = {
   };  
 
   export type Module = {
-    id: string;
+    _id: string;
     name: string;
     description: string;
     option: Option;
