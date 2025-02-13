@@ -18,13 +18,13 @@ const columns = [
     className: "hidden md:table-cell",
   },
   {
-    header: "Numéro de Téléphone",
-    accessor: "phone",
+    header: "Niveau",
+    accessor: "niveau",
     className: "hidden lg:table-cell",
   },
   {
-    header: "Addresse",
-    accessor: "address",
+    header: "Filière",
+    accessor: "option",
     className: "hidden lg:table-cell",
   },
   {
@@ -38,6 +38,8 @@ const columns = [
   },
 ];
 
+const {students} = await studentsData();
+
 const StudentListPage = () => {
   const renderRow = (item: Student) => (
     <tr
@@ -46,21 +48,21 @@ const StudentListPage = () => {
     >
       <td className="flex items-center gap-4 p-4">
         <Image
-          src={item.photo}
+          src={item.image}
           alt=""
           width={40}
           height={40}
           className="md:hidden xl:block w-10 h-10 rounded-full object-cover"
         />
         <div className="flex flex-col">
-          <h3 className="font-semibold">{item.name}</h3>
-          <p className="text-xs text-gray-500">{item.class}</p>
+          <h3 className="font-semibold">{`${item.user.nom + " " + item.user.prenom }`}</h3>
+          <p className="text-xs text-gray-500">{`${item.niveau.nom + "" + item.niveau.cycle}`}</p>
         </div>
       </td>
-      <td className="hidden md:table-cell">{item.studentId}</td>
-      <td className="hidden md:table-cell">{item.phone}</td>
+      <td className="hidden md:table-cell">{item.id}</td>
+      <td className="hidden md:table-cell">{item.phoneNumber}</td>
       <td className="hidden md:table-cell">{item.address}</td>
-      <td className="hidden md:table-cell">{item.anneeBac}</td>
+      <td className="hidden md:table-cell">{item.anneeBaccalaureat}</td>
       <td>
         <div className="flex items-center gap-2">
           <Link href={`/list/students/${item.id}`}>
@@ -103,7 +105,7 @@ const StudentListPage = () => {
         </div>
       </div>
       {/* LIST */}
-      <Table columns={columns} renderRow={renderRow} data={studentsData} />
+      <Table columns={columns} renderRow={renderRow} data={students} />
       {/* PAGINATION */}
       <Pagination />
     </div>

@@ -4,21 +4,34 @@
 
 //Types
 export type User = {
-
-}
+    id: string;
+    nom: string;
+    prenom: string;
+    email?: string;
+    username: string;
+    password: string;
+    isAuthenticated: boolean;
+    role: 'admin' | 'enseignant' | 'etudiant';
+};
 
 export type Student = {
     id: string;
-    studentId: string;
-    name: string;
-    email?: string;
-    photo: string;
-    phone?: string;
-    anneeBac: number;
-    class: string;
+    user: User;
+    niveau: Niveau;
+    image: string;
+    gender: string; 
+    phoneNumber?: string;
+    anneeBaccalaureat: number;
+    option: Option;
     address: string;
   };
   
+export type Niveau = {
+    id: string;
+    nom: string;
+    cycle: number;
+  };
+
 
 export type Departement = {
     id: string;
@@ -41,7 +54,11 @@ export let role = "admin";
 
 export const teachersData = [];
 
-export const studentsData = [];
+export const studentsData =  async function getStaticProps() {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/students`)
+    const students: Student[] = await res.json();
+    return { students };
+};
 
 export const optionsData = async function getStaticProps() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/options`)
