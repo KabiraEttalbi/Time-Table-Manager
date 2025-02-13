@@ -47,6 +47,13 @@ export type Option = {
     departement: Departement
   };  
 
+  export type Module = {
+    id: string;
+    name: string;
+    description: string;
+    option: Option;
+};
+
 
 //Data
 
@@ -77,6 +84,30 @@ export const departementsData = async function getStaticProps() {
     const departements: Departement[] = await res.json();
     return { departements };
 };
+
+export const modulesData = async function getStaticProps() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/module`);
+
+  if (!res.ok) {
+    console.error("Échec de la récupération des modules");
+    return { modules: [] };
+  }
+
+  const data = await res.json();
+
+  // Afficher les données pour vérifier la structure
+  console.log("Données récupérées des Modules :", data);
+
+  // Vérifier directement si 'data' est un tableau
+  if (Array.isArray(data)) {
+    return { modules: data };
+  } else {
+    console.error("Les données des modules ne sont pas un tableau", data);
+    return { modules: [] };
+  }
+};
+
+
 
 export const announcementsData = [];
 
