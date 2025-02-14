@@ -4,6 +4,10 @@ import { Calendar, momentLocalizer, View, Views } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useState } from "react";
+import "moment/locale/fr"; // Import French locale for moment
+
+// Set moment's locale to French
+moment.locale("fr");
 
 const localizer = momentLocalizer(moment);
 
@@ -12,6 +16,22 @@ const BigCalendar = () => {
 
   const handleOnChangeView = (selectedView: View) => {
     setView(selectedView);
+  };
+
+  // French translations for the calendar
+  const messages = {
+    today: "Aujourd'hui",
+    previous: "Précédent",
+    next: "Suivant",
+    month: "Mois",
+    week: "Semaine",
+    day: "Jour",
+    work_week: "Semaine de travail",
+    agenda: "Agenda",
+    date: "Date",
+    time: "Heure",
+    event: "Événement",
+    noEventsInRange: "Aucun événement dans cette plage.",
   };
 
   return (
@@ -25,6 +45,7 @@ const BigCalendar = () => {
       onView={handleOnChangeView}
       min={new Date(2025, 1, 0, 8, 0, 0)}
       max={new Date(2025, 1, 0, 17, 0, 0)}
+      messages={messages} // Pass French translations
     />
   );
 };

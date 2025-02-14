@@ -59,7 +59,7 @@ const StudentListPage = () => {
           <p className="text-xs text-gray-500">{`${item.niveau.name + item.niveau.cycle}`}</p>
         </div>
       </td>
-      <td className="hidden md:table-cell">{item.cne}</td>
+      <td className="hidden md:table-cell">{item.cne.toUpperCase()}</td>
       <td className="hidden md:table-cell">{`${item.niveau.name + item.niveau.cycle}`}</td>
       <td className="hidden md:table-cell">{item.option.name}</td>
       <td className="hidden md:table-cell">{item.anneeBaccalaureat}</td>
