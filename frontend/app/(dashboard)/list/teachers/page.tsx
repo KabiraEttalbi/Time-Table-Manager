@@ -71,12 +71,12 @@ const TeacherListPage = () => {
               <Image src="/view.png" alt="" width={16} height={16} />
             </button>
           </Link>
-          {role === "admin" && (
-            // <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaPurple">
-            //   <Image src="/delete.png" alt="" width={16} height={16} />
-            // </button>
-            <FormModal table="teachers" type="delete" id={item._id}/>
-          )}
+          {role === "admin" &&
+            (<>
+              <FormModal table="students" type="delete" id={item._id}/>
+              <FormModal table="students" type="update" id={item._id}/>
+            </>)
+          }
         </div>
       </td>
     </tr>
@@ -96,12 +96,7 @@ const TeacherListPage = () => {
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
-            {role === "admin" && (
-              // <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-              //   <Image src="/plus.png" alt="" width={14} height={14} />
-              // </button>
-              <FormModal table="teachers" type="create"/>
-            )}
+            {role === "admin" && (<FormModal table="teachers" type="create"/>)}
           </div>
         </div>
       </div>
