@@ -59,7 +59,7 @@ const StudentListPage = () => {
           <p className="text-xs text-gray-500">{`${item.niveau.name + item.niveau.cycle}`}</p>
         </div>
       </td>
-      <td className="hidden md:table-cell">{item.cne}</td>
+      <td className="hidden md:table-cell">{item.cne.toUpperCase()}</td>
       <td className="hidden md:table-cell">{`${item.niveau.name + item.niveau.cycle}`}</td>
       <td className="hidden md:table-cell">{item.option.name}</td>
       <td className="hidden md:table-cell">{item.anneeBaccalaureat}</td>
@@ -70,12 +70,12 @@ const StudentListPage = () => {
               <Image src="/view.png" alt="" width={16} height={16} />
             </button>
           </Link>
-          {role === "admin" && (
-            // <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaPurple">
-            //   <Image src="/delete.png" alt="" width={16} height={16} />
-            // </button>
-            <FormModal table="students" type="delete" id={item._id}/>
-          )}
+          {role === "admin" && 
+            (<>
+              <FormModal table="students" type="delete" id={item._id}/>
+              <FormModal table="students" type="update" id={item._id}/>
+            </>)
+          }
         </div>
       </td>
     </tr>
@@ -96,9 +96,6 @@ const StudentListPage = () => {
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
             {role === "admin" && (
-              // <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-              //   <Image src="/plus.png" alt="" width={14} height={14} />
-              // </button>
               <FormModal table="students" type="create"/>
             )}
           </div>

@@ -35,6 +35,18 @@ export type Niveau = {
     cycle: number;
   };
 
+export  type Teacher = {
+    _id: string;
+    user: User;
+    department: Departement;
+    image: string;
+    gender: string; 
+    birthdate: Date;
+    cni: string;
+    phoneNumber?: string;
+    modules: Module[];
+    address: string;
+  };
 
 export type Departement = {
     _id: string;
@@ -62,7 +74,11 @@ export type Option = {
 
 export let role = "admin";
 
-export const teachersData = [];
+export const teachersData = async function getStaticProps() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/teachers`)
+  const teachers: Teacher[] = await res.json();
+  return { teachers };
+};;
 
 export const studentsData =  async function getStaticProps() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/students`)
