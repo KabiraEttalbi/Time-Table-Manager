@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useState } from "react";
+import { JSX, useState } from "react";
 
 // USE LAZY LOADING
 
@@ -10,10 +11,10 @@ import { useState } from "react";
 // import StudentForm from "./forms/StudentForm";
 
 const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
-  loading: () => <h1>Loading...</h1>,
+  loading: () => <h1>Chargement...</h1>,
 });
 const StudentForm = dynamic(() => import("./forms/StudentForm"), {
-  loading: () => <h1>Loading...</h1>,
+  loading: () => <h1>Chargement...</h1>,
 });
 
 const forms: {
@@ -30,21 +31,17 @@ const FormModal = ({
   id,
 }: {
   table:
-    | "teacher"
-    | "student"
-    | "parent"
-    | "subject"
+    | "teachers"
+    | "departements"
+    | "students"
+    | "options"
     | "class"
-    | "lesson"
-    | "exam"
-    | "assignment"
-    | "result"
-    | "attendance"
     | "event"
-    | "announcement";
+    | "announcement"
+    |  "modules";
   type: "create" | "update" | "delete";
   data?: any;
-  id?: number;
+  id?: string;
 }) => {
   const size = type === "create" ? "w-8 h-8" : "w-7 h-7";
   const bgColor =
@@ -60,10 +57,10 @@ const FormModal = ({
     return type === "delete" && id ? (
       <form action="" className="p-4 flex flex-col gap-4">
         <span className="text-center font-medium">
-          All data will be lost. Are you sure you want to delete this {table}?
+        Toutes les données seront perdues. Êtes-vous sûr de vouloir supprimer cet enregistrement?
         </span>
         <button className="bg-red-700 text-white py-2 px-4 rounded-md border-none w-max self-center">
-          Delete
+          Supprimer
         </button>
       </form>
     ) : type === "create" || type === "update" ? (
