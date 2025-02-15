@@ -2,7 +2,7 @@ import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import { classesData, role } from "@/lib/data";
+import {niveauData, role } from "@/lib/data";
 import Image from "next/image";
 
 type Class = {
@@ -38,6 +38,9 @@ const columns = [
     accessor: "action",
   },
 ];
+
+export const { niveaux } = await niveauData(); 
+
 
 const ClassListPage = () => {
   const renderRow = (item: Class) => (

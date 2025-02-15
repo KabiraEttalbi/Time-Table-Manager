@@ -4,33 +4,43 @@ import { Calendar, momentLocalizer, Views, View } from "react-big-calendar";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { EmploiDuTemps } from "@/lib/data"; // Assurez-vous que le chemin est correct
 
-type BigCalendarProps = {
-  emploisDuTemps: EmploiDuTemps[];
-};
+// Définir momentLocalizer ici
+const localizer = momentLocalizer(moment);
+
+interface BigCalendarProps {
+  emploisDuTemps: Array<any>; // Assurez-vous que ce type est correct
+}
 
 const BigCalendar: React.FC<BigCalendarProps> = ({ emploisDuTemps }) => {
   const [view, setView] = useState<View>(Views.WORK_WEEK); // Utiliser View ici
-  const [localizer, setLocalizer] = useState<any>(null);
+  const [localizerState, setLocalizerState] = useState<any>(localizer); // Utiliser localizerState
 
   // Initialisation de momentLocalizer uniquement côté client
   useEffect(() => {
-    const momentLocal = momentLocalizer(moment);
-    setLocalizer(momentLocal); // Définir le localizer après le rendu du client
+    // MomentLocal est déjà défini plus haut, on n'a plus besoin de l'initialiser ici.
+    setLocalizerState(localizer); // Définir le localizer après le rendu du client
   }, []);
 
   const handleOnChangeView = (selectedView: View) => {
     setView(selectedView); // Le type de selectedView est maintenant View
   };
 
-  if (!localizer) {
-    return <div>Loading...</div>; // Affichage d'un loader ou d'un état d'attente tant que `localizer` n'est pas prêt
-  }
+  const messages = {
+    // Exemple de traduction des messages du calendrier
+    allDay: "Toute la journée",
+    previous: "Précédent",
+    next: "Suivant",
+    today: "Aujourd'hui",
+    month: "Mois",
+    week: "Semaine",
+    day: "Jour",
+    agenda: "Agenda",
+  };
 
   return (
     <Calendar
-      localizer={localizer}
+      localizer={localizerState}
       events={emploisDuTemps}
       startAccessor={(event) => new Date(event.startTime)}
       endAccessor={(event) => new Date(event.endTime)}
@@ -41,6 +51,7 @@ const BigCalendar: React.FC<BigCalendarProps> = ({ emploisDuTemps }) => {
       onView={handleOnChangeView}
       min={new Date(2025, 1, 0, 8, 0, 0)}
       max={new Date(2025, 1, 0, 17, 0, 0)}
+      messages={messages} // Pass French translations
     />
   );
 };

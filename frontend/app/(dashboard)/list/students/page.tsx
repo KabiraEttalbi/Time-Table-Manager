@@ -13,18 +13,18 @@ const columns = [
     accessor: "info",
   },
   {
-    header: "ID Etudiant",
-    accessor: "studentId",
+    header: "CNE",
+    accessor: "cne",
     className: "hidden md:table-cell",
   },
   {
-    header: "Numéro de Téléphone",
-    accessor: "phone",
+    header: "Niveau",
+    accessor: "niveau",
     className: "hidden lg:table-cell",
   },
   {
-    header: "Addresse",
-    accessor: "address",
+    header: "Filière",
+    accessor: "option",
     className: "hidden lg:table-cell",
   },
   {
@@ -38,42 +38,44 @@ const columns = [
   },
 ];
 
+export const {students} = await studentsData();
+
 const StudentListPage = () => {
   const renderRow = (item: Student) => (
     <tr
-      key={item.id}
+      key={item._id}
       className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight"
     >
       <td className="flex items-center gap-4 p-4">
         <Image
-          src={item.photo}
+          src={item.image}
           alt=""
           width={40}
           height={40}
           className="md:hidden xl:block w-10 h-10 rounded-full object-cover"
         />
         <div className="flex flex-col">
-          <h3 className="font-semibold">{item.name}</h3>
-          <p className="text-xs text-gray-500">{item.class}</p>
+          <h3 className="font-semibold">{`${item.user.nom + " " + item.user.prenom }`}</h3>
+          <p className="text-xs text-gray-500">{`${item.niveau.name + item.niveau.cycle}`}</p>
         </div>
       </td>
-      <td className="hidden md:table-cell">{item.studentId}</td>
-      <td className="hidden md:table-cell">{item.phone}</td>
-      <td className="hidden md:table-cell">{item.address}</td>
-      <td className="hidden md:table-cell">{item.anneeBac}</td>
+      <td className="hidden md:table-cell">{item.cne.toUpperCase()}</td>
+      <td className="hidden md:table-cell">{`${item.niveau.name + item.niveau.cycle}`}</td>
+      <td className="hidden md:table-cell">{item.option.name}</td>
+      <td className="hidden md:table-cell">{item.anneeBaccalaureat}</td>
       <td>
         <div className="flex items-center gap-2">
-          <Link href={`/list/students/${item.id}`}>
+          <Link href={`/list/students/${item._id}`}>
             <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky">
               <Image src="/view.png" alt="" width={16} height={16} />
             </button>
           </Link>
-          {role === "admin" && (
-            // <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaPurple">
-            //   <Image src="/delete.png" alt="" width={16} height={16} />
-            // </button>
-            <FormModal table="students" type="delete" id={item.id}/>
-          )}
+          {role === "admin" && 
+            (<>
+              <FormModal table="students" type="delete" id={item._id}/>
+              <FormModal table="students" type="update" id={item._id}/>
+            </>)
+          }
         </div>
       </td>
     </tr>
@@ -94,16 +96,13 @@ const StudentListPage = () => {
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
             {role === "admin" && (
-              // <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-              //   <Image src="/plus.png" alt="" width={14} height={14} />
-              // </button>
               <FormModal table="students" type="create"/>
             )}
           </div>
         </div>
       </div>
       {/* LIST */}
-      <Table columns={columns} renderRow={renderRow} data={studentsData} />
+      <Table columns={columns} renderRow={renderRow} data={students} />
       {/* PAGINATION */}
       <Pagination />
     </div>

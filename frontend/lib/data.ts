@@ -3,43 +3,41 @@
 
 // Types
 export type User = {
-  id: string;
-  name: string;
-  email?: string;
-  photo?: string;
-  phone?: string;
-};
 
-export type Student = User & {
-  studentId: string;
-  anneeBac: number;
-  class: string;
-  address: string;
-};
+}
 
-export type Teacher = User & {
-  name: string;
-};
+export type Student = {
+    id: string;
+    studentId: string;
+    name: string;
+    email?: string;
+    photo: string;
+    phone?: string;
+    anneeBac: number;
+    class: string;
+    address: string;
+  };
+  
 
 export type Departement = {
-  id: string;
-  name: string;
-  description: string;
-};
+    id: string;
+    name: string;
+    description: string;
+  };
 
 export type Option = {
-  id: string;
-  name: string;
-  description: string;
-  duration: string;
-  departement: Departement;
-};
+    id: string;
+    name: string;
+    description: string;
+    duration: string;
+    departement: Departement
+  };  
 
-export type Module = {
-  id: string;
-  name: string;
-  description: string;
-  option: Option;
+  export type Module = {
+    id: string;
+    name: string;
+    description: string;
+    option: Option;
 };
 
 export type Room = {
@@ -59,21 +57,17 @@ export type EmploiDuTemps = {
 // Data
 export let role = "admin";
 
-export const teachersData: Teacher[] = [];
-export const studentsData: Student[] = [];
+export const teachersData = [];
 
-export const optionsData = async (): Promise<Option[]> => {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/options`, {
-      headers: { "Content-Type": "application/json" },
-    });
-    if (!res.ok) throw new Error("Échec de la récupération des options");
-    return await res.json();
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
+export const studentsData = [];
+
+export const optionsData = async function getStaticProps() {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/options`)
+    const options: Option[] = await res.json();
+    return { options };
 };
+
+
 
 export const departementsData = async (): Promise<Departement[]> => {
   try {
