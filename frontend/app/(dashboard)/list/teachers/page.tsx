@@ -40,7 +40,6 @@ const columns = [
 export const {teachers} = await teachersData();
 export const {modules} = await modulesData();
 
- console.log(teachers);
 const TeacherListPage = () => {
   const renderRow = (item: Teacher) => (
     <tr
@@ -73,8 +72,8 @@ const TeacherListPage = () => {
           </Link>
           {role === "admin" &&
             (<>
-              <FormModal table="students" type="delete" id={item._id}/>
-              <FormModal table="students" type="update" id={item._id}/>
+              <FormModal table="teachers" type="delete" id={item._id}/>
+              <FormModal table="teachers" type="update" id={item._id}/>
             </>)
           }
         </div>
