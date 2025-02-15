@@ -16,7 +16,7 @@ const StudentForm = dynamic(() => import("./forms/StudentForm"), {
 const forms: {
   [key: string]: (type: "create" | "update", data?: any, onSuccess?: () => void) => JSX.Element;
 } = {
-  teachers: (type, data, onSuccess) => <TeacherForm type={type} data={data}  />,
+  teachers: (type, data, onSuccess) => <TeacherForm type={type} data={data} onSuccess={onSuccess} />,
   students: (type, data, onSuccess) => <StudentForm type={type} data={data} onSuccess={onSuccess} />,
 };
 

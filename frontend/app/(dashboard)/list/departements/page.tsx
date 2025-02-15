@@ -20,7 +20,7 @@ const columns = [
   },
 ];
 
-const { departements } = await departementsData(); 
+export const { departements } = await departementsData(); 
 
 const Departementlistpage = async () => {
     const renderRow = (item: Departement) => (

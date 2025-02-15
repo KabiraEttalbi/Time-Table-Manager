@@ -11,7 +11,7 @@ import axios from "axios";
 import { options } from "@/app/(dashboard)/list/filieres/page";
 import { niveaux } from "@/app/(dashboard)/list/niveaux/page";
 import { students } from "@/app/(dashboard)/list/students/page";
-import { Niveau, Option, Student } from "@/lib/data";
+import { Niveau, Option } from "@/lib/data";
 import { useEffect, useState } from "react"; // Add useEffect for pre-filling form data
 
 const schema = z.object({
