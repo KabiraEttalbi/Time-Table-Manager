@@ -11,7 +11,7 @@ moment.locale("fr");
 
 const localizer = momentLocalizer(moment);
 
-const BigCalendar = () => {
+const BigCalendar = ({ schedules }) => {
   const [view, setView] = useState<View>(Views.WORK_WEEK);
 
   const handleOnChangeView = (selectedView: View) => {
@@ -34,9 +34,35 @@ const BigCalendar = () => {
     noEventsInRange: "Aucun événement dans cette plage.",
   };
 
+  // Transform the schedule data into the format expected by react-big-calendar
+  const events = schedules.map((schedule) => {
+    const startDate = moment(schedule.jour, "dddd").toDate();
+    const startTime = moment(schedule.heureDebut, "HH:mm").toDate();
+    const endTime = moment(schedule.heureFin, "HH:mm").toDate();
+
+    return {
+      title: `Module: ${schedule.module}, Salle: ${schedule.salle}`,
+      start: new Date(
+        startDate.getFullYear(),
+        startDate.getMonth(),
+        startDate.getDate(),
+        startTime.getHours(),
+        startTime.getMinutes()
+      ),
+      end: new Date(
+        startDate.getFullYear(),
+        startDate.getMonth(),
+        startDate.getDate(),
+        endTime.getHours(),
+        endTime.getMinutes()
+      ),
+    };
+  });
+
   return (
     <Calendar
       localizer={localizer}
+      events={events}
       startAccessor="start"
       endAccessor="end"
       views={["work_week", "day"]}

@@ -2,10 +2,16 @@ import Announcements from "@/components/Announcements";
 import BigCalendar from "@/components/BigCalender";
 import Image from "next/image";
 import { students } from "../page";
+import { schedulesData } from "@/lib/data";
+
+export const {schedules} = await schedulesData();
+console.log(schedules)
 
 const SingleStudentPage = async ({ params }: { params: { id: string } }) => {
   const { id } = await params; // Get student ID from URL
   const student = students.find((student) => student._id === id);
+  const schedule = schedules.filter((schedule) => schedule.user._id === id);
+  console.log(schedule)
 
   if (student) {
     return (
@@ -90,7 +96,7 @@ const SingleStudentPage = async ({ params }: { params: { id: string } }) => {
           {/* BOTTOM */}
           <div className="mt-4 bg-white rounded-md p-4 h-[800px]">
             <h1>Emploi du temps</h1>
-            <BigCalendar />
+            <BigCalendar  schedules={schedule}/>
           </div>
         </div>
         {/* RIGHT */}
