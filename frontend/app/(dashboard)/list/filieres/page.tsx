@@ -28,7 +28,7 @@ const columns = [
   },
 ];
 
-const { options } = await optionsData(); 
+export const { options } = await optionsData(); 
 
 const OptionListPage = () => {
   const renderRow = (item: Option) => (

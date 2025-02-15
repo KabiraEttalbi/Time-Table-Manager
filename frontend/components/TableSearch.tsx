@@ -8,6 +8,7 @@ const TableSearch = () => {
         type="text"
         placeholder="Rechercher..."
         className="w-[200px] p-2 bg-transparent outline-none"
+        name = "search"
       />
     </div>
   );

@@ -3,12 +3,8 @@
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import axios from "axios";
 import { JSX, useState } from "react";
-
-// USE LAZY LOADING
-
-// import TeacherForm from "./forms/TeacherForm";
-// import StudentForm from "./forms/StudentForm";
 
 const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
   loading: () => <h1>Chargement...</h1>,
@@ -18,10 +14,10 @@ const StudentForm = dynamic(() => import("./forms/StudentForm"), {
 });
 
 const forms: {
-  [key: string]: (type: "create" | "update", data?: any) => JSX.Element;
+  [key: string]: (type: "create" | "update", data?: any, onSuccess?: () => void) => JSX.Element;
 } = {
-  teacher: (type, data) => <TeacherForm type={type} data={data} />,
-  student: (type, data) => <StudentForm type={type} data={data} />
+  teachers: (type, data, onSuccess) => <TeacherForm type={type} data={data}  />,
+  students: (type, data, onSuccess) => <StudentForm type={type} data={data} onSuccess={onSuccess} />,
 };
 
 const FormModal = ({
@@ -38,7 +34,7 @@ const FormModal = ({
     | "class"
     | "event"
     | "announcement"
-    |  "modules";
+    | "modules";
   type: "create" | "update" | "delete";
   data?: any;
   id?: string;
@@ -53,18 +49,39 @@ const FormModal = ({
 
   const [open, setOpen] = useState(false);
 
+  const handleDelete = async () => {
+    try {
+      if (id) {
+        await axios.delete(`http://localhost:3001/${table}/${id}`);
+        console.log(`${table.slice(0, -1)} deleted successfully`);
+        setOpen(false); // Close the modal after deletion
+      }
+    } catch (error: any) {
+      console.error("Error:", error.response?.data || error.message);
+    }
+  };
+
   const Form = () => {
     return type === "delete" && id ? (
-      <form action="" className="p-4 flex flex-col gap-4">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleDelete();
+        }}
+        className="p-4 flex flex-col gap-4"
+      >
         <span className="text-center font-medium">
-        Toutes les données seront perdues. Êtes-vous sûr de vouloir supprimer cet enregistrement?
+          Toutes les données seront perdues. Êtes-vous sûr de vouloir supprimer cet enregistrement?
         </span>
-        <button className="bg-red-700 text-white py-2 px-4 rounded-md border-none w-max self-center">
+        <button
+          type="submit"
+          className="bg-red-700 text-white py-2 px-4 rounded-md border-none w-max self-center"
+        >
           Supprimer
         </button>
       </form>
     ) : type === "create" || type === "update" ? (
-      forms[table](type, data)
+      forms[table](type, { ...data, _id: id }, () => setOpen(false)) // Pass the `id` as part of the `data` object
     ) : (
       "Form not found!"
     );

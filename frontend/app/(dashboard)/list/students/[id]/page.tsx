@@ -4,7 +4,7 @@ import Image from "next/image";
 import { students } from "../page";
 
 const SingleStudentPage = async ({ params }: { params: { id: string } }) => {
-  const { id } = params; // Get student ID from URL
+  const { id } = await params; // Get student ID from URL
   const student = students.find((student) => student._id === id);
 
   if (student) {
