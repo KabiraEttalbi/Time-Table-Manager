@@ -7,7 +7,7 @@ export type User = {
     _id: string;
     nom: string;
     prenom: string;
-    email?: string;
+    email: string;
     username: string;
     password: string;
     isAuthenticated: boolean;
@@ -23,7 +23,7 @@ export type Student = {
     birthdate: Date;
     cne: string;
     cni: string;
-    phoneNumber?: string;
+    phoneNumber: string;
     anneeBaccalaureat: number;
     option: Option;
     address: string;
@@ -43,7 +43,7 @@ export  type Teacher = {
     gender: string; 
     birthdate: Date;
     cni: string;
-    phoneNumber?: string;
+    phoneNumber: string;
     modules: Module[];
     address: string;
   };
@@ -92,7 +92,11 @@ export const optionsData = async function getStaticProps() {
     return { options };
 };
 
-export const classesData = [];
+export const niveauData = async function getStaticProps() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/niveau`)
+  const niveaux: Niveau[] = await res.json();
+  return { niveaux };
+};;
 
 export const eventsData = [];
 
