@@ -38,7 +38,8 @@ const FormModal = ({
     | "class"
     | "event"
     | "announcement"
-    |  "modules";
+    |  "modules"
+    |  "emplois-du-temps";
   type: "create" | "update" | "delete";
   data?: any;
   id?: string;
