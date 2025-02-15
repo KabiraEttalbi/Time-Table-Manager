@@ -44,7 +44,7 @@ export  type Teacher = {
     birthdate: Date;
     cni: string;
     phoneNumber: string;
-    modules: Module[];
+    modules?: Module[];
     address: string;
   };
 
@@ -117,9 +117,6 @@ export const modulesData = async function getStaticProps() {
   }
 
   const data = await res.json();
-
-  // Afficher les données pour vérifier la structure
-  console.log("Données récupérées des Modules :", data);
 
   // Vérifier directement si 'data' est un tableau
   if (Array.isArray(data)) {
