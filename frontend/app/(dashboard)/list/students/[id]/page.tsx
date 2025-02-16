@@ -87,7 +87,7 @@ const SingleStudentPage = async ({ params }: { params: { id: string } }) => {
                   className="w-6 h-6"
                 />
                 <div className="">
-                  <h1 className="text-xl font-semibold">{`${student.niveau.name + student.niveau.cycle}`}</h1>
+                  <h1 className="text-xl font-semibold">{`${student.niveau.name + " " + student.niveau.cycle}`}</h1>
                   <span className="text-sm text-gray-400">Niveau</span>
                 </div>
               </div>
