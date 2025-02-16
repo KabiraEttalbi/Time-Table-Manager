@@ -8,6 +8,7 @@ import { JSX, useState } from "react";
 import DepartementForm from "./forms/DepartementForm";
 import OptionForm from "./forms/OptionForm";
 import NiveauForm from "./forms/NiveauForm";
+import ModuleForm from "./forms/ModuleForm";
 
 
 const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
@@ -25,6 +26,7 @@ const forms: {
   departements: (type, data, onSuccess) => <DepartementForm type={type} data={data} onSuccess={onSuccess} />,
   options: (type, data, onSuccess) => <OptionForm type={type} data={data} onSuccess={onSuccess} />,
   niveau: (type, data, onSuccess) => <NiveauForm type={type} data={data} onSuccess={onSuccess} />,
+  modules: (type, data, onSuccess) => <ModuleForm type={type} data={data} onSuccess={onSuccess} />,
 
 };
 
@@ -42,7 +44,7 @@ const FormModal = ({
     | "niveau"
     | "event"
     | "announcement"
-    | "modules";
+    | "module";
   type: "create" | "update" | "delete";
   data?: any;
   id?: string;

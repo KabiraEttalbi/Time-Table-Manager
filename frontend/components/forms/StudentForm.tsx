@@ -296,16 +296,16 @@ const StudentForm = ({
             {...register("niveau")}
             defaultValue={data?.niveau?.name || ""} // Use optional chaining to avoid errors
           >
-            <option value="" hidden>Sélectionner une filière</option>
+            <option value="" hidden>Sélectionner un niveau</option>
             {niveaux.map((niveau: Niveau) => (
               <option key={niveau._id} value={niveau._id}>
                 {niveau.name}{niveau.cycle}
               </option>
             ))}
           </select>
-          {errors.gender?.message && (
+          {errors.niveau?.message && (
             <p className="text-xs text-red-400">
-              {errors.gender.message.toString()}
+              {errors.niveau.message.toString()}
             </p>
           )}
         </div>
