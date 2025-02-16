@@ -10,7 +10,6 @@ import OptionForm from "./forms/OptionForm";
 import NiveauForm from "./forms/NiveauForm";
 import ModuleForm from "./forms/ModuleForm";
 
-
 const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
   loading: () => <h1>Chargement...</h1>,
 });
@@ -27,7 +26,15 @@ const forms: {
 } = {
   teachers: (type, data, onSuccess) => <TeacherForm type={type} data={data} onSuccess={onSuccess} />,
   students: (type, data, onSuccess) => <StudentForm type={type} data={data} onSuccess={onSuccess} />,
+
+  departements: (type, data, onSuccess) => <DepartementForm type={type} data={data} onSuccess={onSuccess} />,
+  options: (type, data, onSuccess) => <OptionForm type={type} data={data} onSuccess={onSuccess} />,
+  niveau: (type, data, onSuccess) => <NiveauForm type={type} data={data} onSuccess={onSuccess} />,
+  modules: (type, data, onSuccess) => <ModuleForm type={type} data={data} onSuccess={onSuccess} />,
+  //salles: (type, data, onSuccess) => <SalleForm type={type} data={data} onSuccess={onSuccess} />,
+
 };
+
 
 const FormModal = ({
   table,
@@ -43,7 +50,10 @@ const FormModal = ({
     | "niveau"
     | "event"
     | "announcement"
-    | "modules";
+    | "module"
+    |"salles";
+    
+
   type: "create" | "update" | "delete";
   data?: any;
   id?: string;
