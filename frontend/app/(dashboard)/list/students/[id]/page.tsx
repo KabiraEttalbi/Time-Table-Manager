@@ -10,6 +10,11 @@ console.log(schedules)
 const SingleStudentPage = async ({ params }: { params: { id: string } }) => {
   const { id } = await params; // Get student ID from URL
   const student = students.find((student) => student._id === id);
+  // Check if student exists
+  if (!student) {
+    return <div>Student not found</div>;
+  }
+
   const schedule = schedules.filter((schedule) => schedule.user._id === student?.user._id);
   console.log(schedule)
 
