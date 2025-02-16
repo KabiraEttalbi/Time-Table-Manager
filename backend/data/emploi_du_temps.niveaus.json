@@ -1,0 +1,40 @@
+[{
+  "_id": {
+    "$oid": "67ae8af1306e71b2ef7bb5f1"
+  },
+  "name": "Licence 1",
+  "cycle": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ae8afb306e71b2ef7bb5f3"
+  },
+  "name": "Licence 2",
+  "cycle": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ae8aff306e71b2ef7bb5f5"
+  },
+  "name": "Licence 3",
+  "cycle": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ae8b0a306e71b2ef7bb5f7"
+  },
+  "name": "Master 1",
+  "cycle": 2,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ae8b0f306e71b2ef7bb5f9"
+  },
+  "name": "Master 2",
+  "cycle": 2,
+  "__v": 0
+}]

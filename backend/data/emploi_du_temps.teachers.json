@@ -1,0 +1,115 @@
+[{
+  "_id": {
+    "$oid": "67af973584d7b660e155a649"
+  },
+  "user": {
+    "$oid": "67af973584d7b660e155a645"
+  },
+  "department": {
+    "$oid": "67ae829ea3dd072de12af4cb"
+  },
+  "cni": "A347968",
+  "birthdate": {
+    "$date": "1981-08-04T00:00:00.000Z"
+  },
+  "gender": "homme",
+  "address": "24000, El Jadida",
+  "phoneNumber": "+212 661-864538",
+  "modules": [
+    "67ae6dcd1a401f373415a451"
+  ],
+  "image": "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67af99cd84d7b660e155a655"
+  },
+  "user": {
+    "$oid": "67af99cd84d7b660e155a651"
+  },
+  "department": {
+    "$oid": "67ae829ea3dd072de12af4cb"
+  },
+  "cni": "G534728",
+  "birthdate": {
+    "$date": "1986-06-24T00:00:00.000Z"
+  },
+  "gender": "Femme",
+  "address": "22001, El Jadida",
+  "phoneNumber": "+212 675-220011",
+  "modules": [
+    "67af994d84d7b660e155a64b"
+  ],
+  "image": "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67af9c3484d7b660e155a661"
+  },
+  "user": {
+    "$oid": "67af9c3484d7b660e155a65d"
+  },
+  "department": {
+    "$oid": "67ae829ea3dd072de12af4cb"
+  },
+  "cni": "f234578",
+  "birthdate": {
+    "$date": "1978-09-21T00:00:00.000Z"
+  },
+  "gender": "Homme",
+  "address": "4400, El Jadida",
+  "phoneNumber": "+212 672-056987",
+  "modules": [
+    "67af9aba84d7b660e155a657"
+  ],
+  "image": "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67af9d3584d7b660e155a66f"
+  },
+  "user": {
+    "$oid": "67af9d3584d7b660e155a66b"
+  },
+  "department": {
+    "$oid": "67ae829ea3dd072de12af4cb"
+  },
+  "cni": "D394572",
+  "birthdate": {
+    "$date": "1978-05-12T00:00:00.000Z"
+  },
+  "gender": "Homme",
+  "address": "4400, El Jadida",
+  "phoneNumber": "+212 672-056987",
+  "modules": [
+    "67af9ad484d7b660e155a65b"
+  ],
+  "image": "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67b0c3a35ea435e1ca7ab90a"
+  },
+  "user": {
+    "$oid": "67b0c3a35ea435e1ca7ab906"
+  },
+  "department": {
+    "$oid": "67ae829ea3dd072de12af4cb"
+  },
+  "cni": "H234572",
+  "birthdate": {
+    "$date": "1978-05-12T00:00:00.000Z"
+  },
+  "gender": "Homme",
+  "address": "4400, El Jadida",
+  "phoneNumber": "+212 672-056987",
+  "modules": [
+    "67af9ad484d7b660e155a65b"
+  ],
+  "image": "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "__v": 0
+}]

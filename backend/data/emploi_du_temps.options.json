@@ -1,0 +1,20 @@
+[{
+  "_id": {
+    "$oid": "67af95b484d7b660e155a640"
+  },
+  "name": "2IAD",
+  "description": "Ingénierie Informatique et Annalyse de données",
+  "duration": "2 ans",
+  "departement": "67ae829ea3dd072de12af4cb",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67af95de84d7b660e155a643"
+  },
+  "name": "BIBDA",
+  "description": "Business Intelligence et Big Data Analytics",
+  "duration": "2 ans",
+  "departement": "67ae829ea3dd072de12af4cb",
+  "__v": 0
+}]

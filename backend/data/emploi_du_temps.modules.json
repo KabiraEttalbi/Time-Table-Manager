@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "67ae6dcd1a401f373415a451"
+  },
+  "name": "Developpement multiplateforme",
+  "nbhours": 30,
+  "niveau": "67ae8b0a306e71b2ef7bb5f7",
+  "option": "67af95b484d7b660e155a640",
+  "teacher": "67af973584d7b660e155a649",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67af994d84d7b660e155a64b"
+  },
+  "name": "Gestion de projet ",
+  "nbhours": 30,
+  "niveau": "67ae8b0a306e71b2ef7bb5f7",
+  "option": "67af95b484d7b660e155a640",
+  "teacher": "67af99cd84d7b660e155a655",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67af9aba84d7b660e155a657"
+  },
+  "name": "Architectures Distribuées & Design Patterns",
+  "nbhours": 30,
+  "niveau": "67ae8b0a306e71b2ef7bb5f7",
+  "option": "67af95b484d7b660e155a640",
+  "teacher": "67af9c3484d7b660e155a661",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67af9ac784d7b660e155a659"
+  },
+  "name": "Analyse de Données & Multimédia",
+  "nbhours": 30,
+  "niveau": "67ae8b0a306e71b2ef7bb5f7",
+  "option": "67af95b484d7b660e155a640",
+  "teacher": "67af9d3584d7b660e155a66f",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67af9ad484d7b660e155a65b"
+  },
+  "name": "Système d'Information",
+  "nbhours": 30,
+  "niveau": "67ae8b0a306e71b2ef7bb5f7",
+  "option": "67af95b484d7b660e155a640",
+  "teacher": "67af9d3584d7b660e155a66f",
+  "__v": 0
+}]

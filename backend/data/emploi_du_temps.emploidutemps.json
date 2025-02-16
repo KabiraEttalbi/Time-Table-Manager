@@ -1,0 +1,95 @@
+[{
+  "_id": {
+    "$oid": "67afc67980c6b15b00fc3c7c"
+  },
+  "jour": "Lundi",
+  "heureDebut": "08:00",
+  "heureFin": "10:00",
+  "module": "67af9aba84d7b660e155a657",
+  "salle": "64c9f1e8c8f3f3e4b7a1d2ed",
+  "type": "student",
+  "user": "67aff54f60700bb0925ee1d9",
+  "createdAt": {
+    "$date": "2025-02-14T22:40:57.021Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-14T22:40:57.021Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67afc6ab80c6b15b00fc3c7e"
+  },
+  "jour": "Mardi",
+  "heureDebut": "14:00",
+  "heureFin": "16:00",
+  "module": "67ae6dcd1a401f373415a451",
+  "salle": "64c9f1e8c8f3f3e4b7a1d2ed",
+  "type": "student",
+  "user": "67aff54f60700bb0925ee1d9",
+  "createdAt": {
+    "$date": "2025-02-14T22:41:47.023Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-14T22:41:47.023Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67afc6de80c6b15b00fc3c80"
+  },
+  "jour": "Mercredi",
+  "heureDebut": "14:00",
+  "heureFin": "16:00",
+  "module": "67af994d84d7b660e155a64b",
+  "salle": "64c9f1e8c8f3f3e4b7a1d2ed",
+  "type": "student",
+  "user": "67aff54f60700bb0925ee1d9",
+  "createdAt": {
+    "$date": "2025-02-14T22:42:38.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-14T22:42:38.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67afc70c80c6b15b00fc3c82"
+  },
+  "jour": "Vendredi",
+  "heureDebut": "10:00",
+  "heureFin": "12:00",
+  "module": "67af9ad484d7b660e155a65b",
+  "salle": "64c9f1e8c8f3f3e4b7a1d2ed",
+  "type": "student",
+  "user": "67aff54f60700bb0925ee1d9",
+  "createdAt": {
+    "$date": "2025-02-14T22:43:24.708Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-14T22:43:24.708Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67afc72980c6b15b00fc3c84"
+  },
+  "jour": "Vendredi",
+  "heureDebut": "14:00",
+  "heureFin": "16:00",
+  "module": "67af9ac784d7b660e155a659",
+  "salle": "64c9f1e8c8f3f3e4b7a1d2ed",
+  "type": "student",
+  "user": "67aff54f60700bb0925ee1d9",
+  "createdAt": {
+    "$date": "2025-02-14T22:43:53.096Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-14T22:43:53.096Z"
+  },
+  "__v": 0
+}]

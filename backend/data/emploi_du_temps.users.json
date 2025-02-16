@@ -1,0 +1,91 @@
+[{
+  "_id": {
+    "$oid": "67af973584d7b660e155a645"
+  },
+  "nom": "Omar",
+  "prenom": "Boutkhoum",
+  "email": "boutkhoum@example.com",
+  "username": "Boutkhoum",
+  "password": "$2b$10$ekUN59ZCXdPWlBH0oUCfnejm7LlEp9fpHo04L.oqe9HOA.xqwCjWe",
+  "isAuthenticated": false,
+  "role": "enseignant",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67af99cd84d7b660e155a651"
+  },
+  "nom": "El Guabassi",
+  "prenom": "Ihssane",
+  "email": "elguabbasi@example.com",
+  "username": "El Guabassi",
+  "password": "$2b$10$unJ0y./Waz3pfu3V8Tjcj.n7esTbN1zLlnv8vhf5pUGhOUcn..4he",
+  "isAuthenticated": false,
+  "role": "enseignant",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67af9c3484d7b660e155a65d"
+  },
+  "nom": "Dahmouni",
+  "prenom": "Abdellatif",
+  "email": "dahmouni@gmail.com",
+  "username": "Dahmouni",
+  "password": "$2b$10$zX3Pca4SPrk3e7CccBi7aOJS/6/wXjC.EapRGd8QJHqCTxAFW3PGC",
+  "isAuthenticated": false,
+  "role": "enseignant",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67af9d3584d7b660e155a66b"
+  },
+  "nom": "El Kafi",
+  "prenom": "Jamal",
+  "email": "elkafi@gmail.com",
+  "username": "El Kafi",
+  "password": "$2b$10$MlLned5pd9drbFnS5AeBzeR6qMd3H2gGyHTEVumq1kDmgPcl9PJMm",
+  "isAuthenticated": false,
+  "role": "enseignant",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67aff48a60700bb0925ee1d1"
+  },
+  "nom": "Oumayma",
+  "prenom": "Rochdi",
+  "email": "oumaymarochdi02@gmail.com",
+  "username": "oumaymaa",
+  "password": "$2b$10$MA8rebXrkeOB1jxnhQGv7eU8UOTjH.1CiaKJNvdwsOWjRuEPrzjw.",
+  "isAuthenticated": false,
+  "role": "etudiant",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67aff54f60700bb0925ee1d7"
+  },
+  "nom": "Oumayma",
+  "prenom": "Rochdi",
+  "email": "oumaymarochdi01@gmail.com",
+  "username": "oumayma",
+  "password": "$2b$10$5.taniNclOmqXbv3NQrN6O.3mYbQ/ak5JGqdEUlZ8I6j1JFwMcHca",
+  "isAuthenticated": false,
+  "role": "etudiant",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67b0c37d5ea435e1ca7ab8fc"
+  },
+  "nom": "El Kafi",
+  "prenom": "Jamal",
+  "email": "elkfi@gmail.com",
+  "username": "hii",
+  "password": "$2b$10$TUHlj50dfx0A/WfGlK.Lyuhcd2tN4nLbwsJ98RMGUaQ6ZBZ19V.fK",
+  "isAuthenticated": false,
+  "role": "enseignant",
+  "__v": 0
+}]
