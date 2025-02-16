@@ -10,7 +10,7 @@ console.log(schedules)
 const SingleStudentPage = async ({ params }: { params: { id: string } }) => {
   const { id } = await params; // Get student ID from URL
   const student = students.find((student) => student._id === id);
-  const schedule = schedules.filter((schedule) => schedule.user._id === id);
+  const schedule = schedules.filter((schedule) => schedule.user._id === student?.user._id);
   console.log(schedule)
 
   if (student) {

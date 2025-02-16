@@ -5,13 +5,14 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useState } from "react";
 import "moment/locale/fr"; // Import French locale for moment
+import { Emploidutemps } from "@/lib/data";
 
 // Set moment's locale to French
 moment.locale("fr");
 
 const localizer = momentLocalizer(moment);
 
-const BigCalendar = ({ schedules }) => {
+const BigCalendar = ({ schedules}) => {
   const [view, setView] = useState<View>(Views.WORK_WEEK);
 
   const handleOnChangeView = (selectedView: View) => {
@@ -35,13 +36,13 @@ const BigCalendar = ({ schedules }) => {
   };
 
   // Transform the schedule data into the format expected by react-big-calendar
-  const events = schedules.map((schedule) => {
+  const events = schedules.map((schedule: Emploidutemps) => {
     const startDate = moment(schedule.jour, "dddd").toDate();
     const startTime = moment(schedule.heureDebut, "HH:mm").toDate();
     const endTime = moment(schedule.heureFin, "HH:mm").toDate();
 
     return {
-      title: `Module: ${schedule.module}, Salle: ${schedule.salle}`,
+      title: `${schedule.module.name} \n ${schedule.salle.name}`,
       start: new Date(
         startDate.getFullYear(),
         startDate.getMonth(),
