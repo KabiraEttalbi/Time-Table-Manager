@@ -97,6 +97,15 @@ user:User;
 
 };
 
+export type Reservation = {
+  _id: string;
+  salle: Salle;
+  date:Date;
+  heureDebut: string;
+  heureFin: string;
+  utilisateur:User;
+  };
+
 
 
 export const teachersData = async function getStaticProps() {
@@ -158,6 +167,25 @@ const schedules: Emploidutemps[] = await res.json();
 return { schedules };
 };
 
+export const sallesData = async function getStaticProps() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/salle`);
+  if (!res.ok) {
+    console.error("Échec de la récupération des salles");
+    return { salles: [] };
+  }
+  const salles: Salle[] = await res.json();
+  return { salles };
+};
+
+export const reservationsData = async function getStaticProps() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/reservations`);
+  if (!res.ok) {
+    console.error("Échec de la récupération des réservations");
+    return { reservations: [] };
+  }
+  const reservations: Emploidutemps[] = await res.json();
+  return { reservations };
+};
 
 
 
