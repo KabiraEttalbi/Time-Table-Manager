@@ -33,7 +33,8 @@ export type Student = {
 export type Niveau = {
   _id: string;
   name: string;
-  cycle: number;
+  cycle: string;
+  option: Option;
 };
 
 export  type Teacher = {
@@ -94,7 +95,6 @@ user:User;
 };
 
 
-//Data
 
 export const teachersData = async function getStaticProps() {
 const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/teachers`)

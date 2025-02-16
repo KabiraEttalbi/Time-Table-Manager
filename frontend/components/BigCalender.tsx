@@ -12,7 +12,7 @@ moment.locale("fr");
 
 const localizer = momentLocalizer(moment);
 
-const BigCalendar = ({ schedules}) => {
+const BigCalendar = ({ schedules }) => {
   const [view, setView] = useState<View>(Views.WORK_WEEK);
 
   const handleOnChangeView = (selectedView: View) => {

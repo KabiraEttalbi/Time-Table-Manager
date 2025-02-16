@@ -2,12 +2,18 @@ import Announcements from "@/components/Announcements";
 import BigCalendar from "@/components/BigCalender";
 import Image from "next/image";
 import { teachers } from "../page";
+import { schedulesData } from "@/lib/data";
 
+export const {schedules} = await schedulesData();
+console.log(schedules)
 
 
 const SingleTeacherPage = ({ params }: { params: { id: string } }) => {
   const { id } = params; // Get teacher ID from URL
   const teacher = teachers.find((teacher) => teacher._id === id);
+  const schedule = schedules.filter((schedule) => schedule.user._id === teacher?.user._id);
+  console.log(schedule)
+
   
   if (teacher) {
     return (
@@ -66,7 +72,7 @@ const SingleTeacherPage = ({ params }: { params: { id: string } }) => {
                   className="w-6 h-6"
                 />
                 <div className="">
-                  <h1 className="text-xl font-semibold">{teacher.modules.length}</h1>
+                  <h1 className="text-xl font-semibold">{teacher.modules?.length}</h1>
                   <span className="text-sm text-gray-400">Modules</span>
                 </div>
               </div>
@@ -89,7 +95,7 @@ const SingleTeacherPage = ({ params }: { params: { id: string } }) => {
           {/* BOTTOM */}
           <div className="mt-4 bg-white rounded-md p-4 h-[800px]">
             <h1>Emploi du Temps</h1>
-            <BigCalendar />
+            <BigCalendar schedules={schedule}/>
           </div>
         </div>
         {/* RIGHT */}

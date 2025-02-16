@@ -34,7 +34,7 @@ const Departementlistpage = async () => {
             <div className="flex items-center gap-2">
               {role === "admin" && (
                 <>
-                  <FormModal table="departements" type="update" data={item} />
+                  <FormModal table="departements" type="update" id={item._id} />
                   <FormModal table="departements" type="delete" id={item._id} />
                 </>
               )}
