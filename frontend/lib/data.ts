@@ -1,4 +1,5 @@
 /* eslint-disable prefer-const */
+import { teachers } from '@/app/(dashboard)/list/teachers/page';
 // TEMPORARY DATA
 
 export const role = "admin";
@@ -67,7 +68,9 @@ export type Option = {
 export type Module = {
   _id: string;
   name: string;
-  description: string;
+  nbhours: number;
+  niveau: Niveau;
+  teacher: Teacher;
   option: Option;
 };
 

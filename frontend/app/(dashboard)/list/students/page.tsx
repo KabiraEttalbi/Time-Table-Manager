@@ -56,11 +56,11 @@ const StudentListPage = () => {
         />
         <div className="flex flex-col">
           <h3 className="font-semibold">{`${item.user.nom + " " + item.user.prenom }`}</h3>
-          <p className="text-xs text-gray-500">{`${item.niveau.name + item.niveau.cycle}`}</p>
+          <p className="text-xs text-gray-500">{item.niveau.name}</p>
         </div>
       </td>
       <td className="hidden md:table-cell">{item.cne.toUpperCase()}</td>
-      <td className="hidden md:table-cell">{`${item.niveau.name + item.niveau.cycle}`}</td>
+      <td className="hidden md:table-cell">{item.niveau.name }</td>
       <td className="hidden md:table-cell">{item.option.name}</td>
       <td className="hidden md:table-cell">{item.anneeBaccalaureat}</td>
       <td>
