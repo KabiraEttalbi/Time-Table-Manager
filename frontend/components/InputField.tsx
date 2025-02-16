@@ -8,7 +8,10 @@ type InputFieldProps = {
   defaultValue?: string;
   error?: FieldError;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  style?: React.CSSProperties; // Make style optional
+
 };
+
 
 const InputField = ({
   label,
@@ -18,6 +21,8 @@ const InputField = ({
   defaultValue,
   error,
   inputProps,
+  style, // Add style prop
+
 }: InputFieldProps) => {
   return (
     <div className="flex flex-col gap-2 w-full md:w-1/4">
@@ -28,6 +33,7 @@ const InputField = ({
         className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
         {...inputProps}
         defaultValue={defaultValue}
+        style={style}
       />
       {error?.message && (
         <p className="text-xs text-red-400">{error.message.toString()}</p>
@@ -37,3 +43,4 @@ const InputField = ({
 };
 
 export default InputField;
+

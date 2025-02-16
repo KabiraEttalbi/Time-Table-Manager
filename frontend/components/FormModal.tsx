@@ -5,6 +5,10 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import axios from "axios";
 import { JSX, useState } from "react";
+import DepartementForm from "./forms/DepartementForm";
+import OptionForm from "./forms/OptionForm";
+import NiveauForm from "./forms/NiveauForm";
+
 
 const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
   loading: () => <h1>Chargement...</h1>,
@@ -18,6 +22,10 @@ const forms: {
 } = {
   teachers: (type, data, onSuccess) => <TeacherForm type={type} data={data} onSuccess={onSuccess} />,
   students: (type, data, onSuccess) => <StudentForm type={type} data={data} onSuccess={onSuccess} />,
+  departements: (type, data, onSuccess) => <DepartementForm type={type} data={data} onSuccess={onSuccess} />,
+  options: (type, data, onSuccess) => <OptionForm type={type} data={data} onSuccess={onSuccess} />,
+  niveau: (type, data, onSuccess) => <NiveauForm type={type} data={data} onSuccess={onSuccess} />,
+
 };
 
 const FormModal = ({
@@ -31,7 +39,7 @@ const FormModal = ({
     | "departements"
     | "students"
     | "options"
-    | "class"
+    | "niveau"
     | "event"
     | "announcement"
     | "modules";
