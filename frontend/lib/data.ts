@@ -1,6 +1,7 @@
 /* eslint-disable prefer-const */
 // TEMPORARY DATA
 
+export const role = "admin";
 
 //Types
 export type User = {
@@ -94,9 +95,6 @@ user:User;
 
 
 //Data
-
-export let role: "admin" | "student" | "teacher";
-
 
 export const teachersData = async function getStaticProps() {
 const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/teachers`)
