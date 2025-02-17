@@ -28,7 +28,7 @@ const forms: {
   departements: (type, data, onSuccess) => <DepartementForm type={type} data={data} onSuccess={onSuccess} />,
   options: (type, data, onSuccess) => <OptionForm type={type} data={data} onSuccess={onSuccess} />,
   niveau: (type, data, onSuccess) => <NiveauForm type={type} data={data} onSuccess={onSuccess} />,
-  modules: (type, data, onSuccess) => <ModuleForm type={type} data={data} onSuccess={onSuccess} />,
+  module: (type, data, onSuccess) => <ModuleForm type={type} data={data} onSuccess={onSuccess} />,
   salle: (type, data, onSuccess) => <SalleForm type={type} data={data} onSuccess={onSuccess} />,
 
 };

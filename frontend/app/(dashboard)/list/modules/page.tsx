@@ -15,7 +15,7 @@ const columns = [
     accessor: "nbhours",
   },
   {
-    header: "Niveau",
+    header: "Semestre",
     accessor: "niveau",
   },
   {
@@ -42,7 +42,7 @@ const ModuleListPage = async () => {
     >
       <td className="flex items-center gap-4 p-4">{item.name}</td>
       <td className="hidden md:table-cell">{item.nbhours}</td>
-      <td className="hidden md:table-cell">{item.niveau.name}</td>
+      <td className="hidden md:table-cell">{`${item.niveau.name} ${item.niveau.cycle}`}</td>
       <td className="hidden md:table-cell">{item.option.name}</td>
       <td className="hidden md:table-cell">{`${item.teacher.user.nom} ${item.teacher.user.prenom}`}</td>
       <td>

@@ -1,12 +1,7 @@
 "use client";
 import { students } from "@/app/(dashboard)/list/students/page";
 import Image from "next/image";
-import {
-  RadialBarChart,
-  RadialBar,
-  ResponsiveContainer,
-} from "recharts";
-
+import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 
 const data = [
   {
@@ -60,12 +55,31 @@ const CountChart = () => {
       <div className="flex justify-center gap-16">
         <div className="flex flex-col gap-1">
           <div className="w-5 h-5 bg-lamaSky rounded-full" />
-          <h1 className="font-bold">{students.map((student) => student.gender === "male").length}</h1>
-          <h2 className="text-xs text-gray-300">Garçons {`(50%)`}</h2>        </div>
+          <h1 className="font-bold">
+            {students.map((student) => student.gender === "male").length}
+          </h1>
+          <h2 className="text-xs text-gray-300">
+            Garçons{" "}
+            {`(${
+              (students.map((student) => student.gender === "male").length /
+                students.length) *
+              100
+            }%)`}
+          </h2>{" "}
+        </div>
         <div className="flex flex-col gap-1">
           <div className="w-5 h-5 bg-lamaYellow rounded-full" />
-          <h1 className="font-bold">{students.map((student) => student.gender === "female").length}</h1>
-          <h2 className="text-xs text-gray-300">Fille {`(50%)`}</h2>
+          <h1 className="font-bold">
+            {students.map((student) => student.gender === "female").length}
+          </h1>
+          <h2 className="text-xs text-gray-300">
+            Fille{" "}
+            {`(${
+              (students.map((student) => student.gender === "female").length /
+                students.length) *
+              100
+            }%)`}
+          </h2>
         </div>
       </div>
     </div>
