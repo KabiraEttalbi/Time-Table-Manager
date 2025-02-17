@@ -38,13 +38,13 @@ const BigCalendar = ({ schedules }) => {
   };
 
   // Transform the schedule data into the format expected by react-big-calendar
-  const events = schedules.map((schedule: Emploidutemps) => {
+  const events = schedules?.map((schedule: Emploidutemps) => {
     const startDate = moment(schedule.jour, "dddd").toDate();
     const startTime = moment(schedule.heureDebut, "HH:mm").toDate();
     const endTime = moment(schedule.heureFin, "HH:mm").toDate();
 
     return {
-      title: `${schedule.module.name} \n ${schedule.salle.name}`,
+      title: `${schedule?.module?.name} \n ${schedule?.salle?.name}`,
       start: new Date(
         startDate.getFullYear(),
         startDate.getMonth(),
@@ -67,7 +67,7 @@ const BigCalendar = ({ schedules }) => {
 
     // Titre du PDF
     doc.setFontSize(18);
-    doc.text(`Emploi du temps : ${schedules[0].module.option.name}`, 14, 20);
+    doc.text(`Emploi du temps : ${schedules[0].module?.option?.name}`, 14, 20);
   
 
     // En-tête du tableau
@@ -83,8 +83,8 @@ const BigCalendar = ({ schedules }) => {
     const data = schedules.map((schedule: Emploidutemps) => [
       schedule.jour, // Jour (Lundi, Mardi, etc.)
       `${schedule.heureDebut} - ${schedule.heureFin}`, // Heure
-      schedule.salle.name, // Salle
-      schedule.module.name, // Module
+      schedule.salle?.name, // Salle
+      schedule.module?.name, // Module
       
     
     ]);
