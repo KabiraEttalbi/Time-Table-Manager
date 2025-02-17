@@ -38,7 +38,7 @@ const menuItems = [
       },
       {
         icon: "/niveau.png",
-        label: "Niveaux",
+        label: "Semestres",
         href: "/list/niveaux",
         visible: ["admin", "teacher"],
       },
