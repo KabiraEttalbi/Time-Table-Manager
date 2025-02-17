@@ -9,6 +9,7 @@ import DepartementForm from "./forms/DepartementForm";
 import OptionForm from "./forms/OptionForm";
 import NiveauForm from "./forms/NiveauForm";
 import ModuleForm from "./forms/ModuleForm";
+import SalleForm from "./forms/SalleForm";
 
 const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
   loading: () => <h1>Chargement...</h1>,
@@ -17,9 +18,6 @@ const StudentForm = dynamic(() => import("./forms/StudentForm"), {
   loading: () => <h1>Chargement...</h1>,
 });
 
-// const SalleForm = dynamic(() => import("./forms/SalleForm"), {
-//   loading: () => <h1>Chargement...</h1>,
-// });
 
 const forms: {
   [key: string]: (type: "create" | "update", data?: any, onSuccess?: () => void) => JSX.Element;
@@ -31,7 +29,7 @@ const forms: {
   options: (type, data, onSuccess) => <OptionForm type={type} data={data} onSuccess={onSuccess} />,
   niveau: (type, data, onSuccess) => <NiveauForm type={type} data={data} onSuccess={onSuccess} />,
   modules: (type, data, onSuccess) => <ModuleForm type={type} data={data} onSuccess={onSuccess} />,
-  //salles: (type, data, onSuccess) => <SalleForm type={type} data={data} onSuccess={onSuccess} />,
+  salle: (type, data, onSuccess) => <SalleForm type={type} data={data} onSuccess={onSuccess} />,
 
 };
 
@@ -51,8 +49,8 @@ const FormModal = ({
     | "event"
     | "announcement"
     | "module"
-    |"salles";
-    
+    | "salle"
+    ;
 
   type: "create" | "update" | "delete";
   data?: any;
