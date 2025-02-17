@@ -49,7 +49,6 @@ const moduleForm = ({
       // Find the module in the modules array
       const module = modules.find((m) => m._id === data._id);
       if (module) {
-        console.log(module);
         setValue("name", module.name);
         setValue("nbhours", module.nbhours);
         setValue("option", module.option?._id);

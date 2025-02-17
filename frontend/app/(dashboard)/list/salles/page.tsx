@@ -23,24 +23,14 @@ const columns = [
     accessor: "disponible",
   },
   {
-    header: "Module",
-    accessor: "module",
-  },
-  {
     header: "Actions",
     accessor: "action",
   },
 ];
 
+export const { salles } = await sallesData();
+
 const SalleListPage = async () => {
-  const { salles } = await sallesData();
-
-  // Vérifier si 'salles' est un tableau
-  if (!Array.isArray(salles)) {
-    return <div>Error: Data is not an array</div>;
-  }
-
-  console.log("Salles Data in Component:", salles); // Afficher les salles ici
 
   const renderRow = (item: Salle) => (
     <tr
@@ -53,13 +43,12 @@ const SalleListPage = async () => {
       <td className="hidden md:table-cell">
         {item.disponible ? "Disponible" : "Occupée"}
       </td>
-      <td className="hidden md:table-cell">{item.module?.name}</td>
       <td>
         <div className="flex items-center gap-2">
           {role === "admin" && (
             <>
-              <FormModal table="salles" type="update" id={item._id} />
-              <FormModal table="salles" type="delete" id={item._id} />
+              <FormModal table="salle" type="update" id={item._id} />
+              <FormModal table="salle" type="delete" id={item._id} />
             </>
           )}
         </div>
@@ -80,7 +69,7 @@ const SalleListPage = async () => {
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
-            {role === "admin" && <FormModal table="salles" type="create" />}
+            {role === "admin" && <FormModal table="salle" type="create" />}
           </div>
         </div>
       </div>
