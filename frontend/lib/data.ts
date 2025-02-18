@@ -1,5 +1,4 @@
 /* eslint-disable prefer-const */
-import { teachers } from '@/app/(dashboard)/list/teachers/page';
 // TEMPORARY DATA
 
 export const role = "admin";
@@ -75,36 +74,38 @@ export type Module = {
 };
 
 export type Salle = {
-_id: string;
-name: string;
-capacite:number;
-type:"amphi"|"normal"|"haull"
-module:Module;
-disponible:boolean;
-
+  _id: string;
+  name: string;
+  capacite:number;
+  type:"amphi"|"normal"|"haull"
+  module:Module;
+  disponible:boolean;
 };
 
 
 export type Emploidutemps = {
-_id: string;
-jour: string;
-heureDebut: string;
-heureFin: string;
-module:Module;
-salle:Salle;
-type:"student"|"teacher";
-user:User;
-
+  _id: string;
+  jour: string;
+  heureDebut: string;
+  heureFin: string;
+  module:Module;
+  salle:Salle;
+  type:"student"|"teacher";
+  user:User;
 };
 
 export type Reservation = {
   _id: string;
   salle: Salle;
+  description: string;
+  title: string;
+  type: 'event' | 'course' | 'td' | 'tp';
+  module?: Module;
   date:Date;
   heureDebut: string;
   heureFin: string;
-  utilisateur:User;
-  };
+  user: User;
+};
 
 
 
@@ -143,22 +144,10 @@ export const departementsData = async function getStaticProps() {
 };
 
 export const modulesData = async function getStaticProps() {
-const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/module`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/module`);
+  const modules: Module[] = await res.json();
+  return { modules };
 
-if (!res.ok) {
-  console.error("Échec de la récupération des modules");
-  return { modules: [] };
-}
-
-const data = await res.json();
-
-// Vérifier directement si 'data' est un tableau
-if (Array.isArray(data)) {
-  return { modules: data };
-} else {
-  console.error("Les données des modules ne sont pas un tableau", data);
-  return { modules: [] };
-}
 };
 
 export const schedulesData = async function getStaticProps() {
@@ -169,21 +158,13 @@ return { schedules };
 
 export const sallesData = async function getStaticProps() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/salle`);
-  if (!res.ok) {
-    console.error("Échec de la récupération des salles");
-    return { salles: [] };
-  }
   const salles: Salle[] = await res.json();
   return { salles };
 };
 
 export const reservationsData = async function getStaticProps() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/reservations`);
-  if (!res.ok) {
-    console.error("Échec de la récupération des réservations");
-    return { reservations: [] };
-  }
-  const reservations: Emploidutemps[] = await res.json();
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/reservation`);
+  const reservations: Reservation[] = await res.json();
   return { reservations };
 };
 

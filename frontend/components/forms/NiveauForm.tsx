@@ -71,10 +71,10 @@ const NiveauForm = ({
       if (type === "update") {
         console.log(data._id, payload);
         const response = await axios.put(`http://localhost:3001/niveau/${data._id}`, payload);
-        console.log("option Updated:", response.data);
+        console.log("niveau Updated:", response.data);
       }else if (type === "create") {
         const response = await axios.post("http://localhost:3001/niveau", payload);
-        console.log("option Created:", response.data);
+        console.log("niveau Created:", response.data);
       }} 
       catch (error: any) {
         console.error("Error:", error.response.data || error.message);
