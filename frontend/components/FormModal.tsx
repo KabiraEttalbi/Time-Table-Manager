@@ -10,6 +10,7 @@ import OptionForm from "./forms/OptionForm";
 import NiveauForm from "./forms/NiveauForm";
 import ModuleForm from "./forms/ModuleForm";
 import SalleForm from "./forms/SalleForm";
+import ReservationForm from "./forms/ReservationForm";
 
 const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
   loading: () => <h1>Chargement...</h1>,
@@ -30,7 +31,7 @@ const forms: {
   niveau: (type, data, onSuccess) => <NiveauForm type={type} data={data} onSuccess={onSuccess} />,
   module: (type, data, onSuccess) => <ModuleForm type={type} data={data} onSuccess={onSuccess} />,
   salle: (type, data, onSuccess) => <SalleForm type={type} data={data} onSuccess={onSuccess} />,
-
+  reservation: (type, data, onSuccess) => <ReservationForm type={type} data={data} onSuccess={onSuccess} />,
 };
 
 
@@ -50,6 +51,7 @@ const FormModal = ({
     | "announcement"
     | "module"
     | "salle"
+    | "reservation"
     ;
 
   type: "create" | "update" | "delete";

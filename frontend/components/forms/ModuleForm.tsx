@@ -25,7 +25,7 @@ const schema = z.object({
 });
 type Inputs = z.infer<typeof schema>;
 
-const moduleForm = ({
+const ModuleForm = ({
   type,
   data,
   onSuccess, // Add this prop
@@ -78,13 +78,13 @@ const moduleForm = ({
           `http://localhost:3001/module/${data._id}`,
           payload
         );
-        console.log("option Updated:", response.data);
+        console.log("module Updated:", response.data);
       } else if (type === "create") {
         const response = await axios.post(
           "http://localhost:3001/module",
           payload
         );
-        console.log("option Created:", response.data);
+        console.log("module Created:", response.data);
       }
     } catch (error: any) {
       console.error("Error:", error.response.data || error.message);
@@ -193,4 +193,4 @@ const moduleForm = ({
   );
 };
 
-export default moduleForm;
+export default ModuleForm;
