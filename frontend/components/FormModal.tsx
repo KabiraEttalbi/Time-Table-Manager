@@ -11,10 +11,9 @@ import NiveauForm from "./forms/NiveauForm";
 import ModuleForm from "./forms/ModuleForm";
 import SalleForm from "./forms/SalleForm";
 import ReservationForm from "./forms/ReservationForm";
+import EventForm from "./forms/EventForm";
 import TimetableForm from "./forms/timetableForm";
 import { Module } from "@/lib/data";
-
-
 
 const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
   loading: () => <h1>Chargement...</h1>,
@@ -36,6 +35,7 @@ const forms: {
   module: (type, data, onSuccess) => <ModuleForm type={type} data={data} onSuccess={onSuccess} />,
   salle: (type, data, onSuccess) => <SalleForm type={type} data={data} onSuccess={onSuccess} />,
   reservation: (type, data, onSuccess) => <ReservationForm type={type} data={data} onSuccess={onSuccess} />,
+  event: (type, data, onSuccess) => <EventForm type={type} data={data} onSuccess={onSuccess} />,
   timetable: (type, data, onSuccess,teacherModules) => <TimetableForm type={type} data={data} onSuccess={onSuccess} teacherModules={teacherModules} />,
 };
 

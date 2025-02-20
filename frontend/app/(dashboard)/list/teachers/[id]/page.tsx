@@ -1,15 +1,19 @@
 import Announcements from "@/components/Announcements";
 import BigCalendar from "@/components/BigCalender";
 import Image from "next/image";
+import { schedulesData } from "@/lib/data";
 import { teachers,modules } from "../page";
-import { Emploidutemps, role, schedulesData } from "@/lib/data";
 import FormModal from "@/components/FormModal";
+import { useUser } from "@/lib/AuthUser";
 
 
 export const { schedules } = await schedulesData();
 console.log(schedules)
 
 const SingleTeacherPage = async ({ params }: { params: { id: string } }) => {
+    const user = useUser(); // Retrieve the user object from context
+    const role = user?.role || ''; // Extract the role from the user object
+  
   const { id } = await params; // Get teacher ID from URL
   const teacher = teachers.find((teacher) => teacher._id === id);
   // Check if teacher exists
