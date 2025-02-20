@@ -1,13 +1,39 @@
 'use client';
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [userNom, setUserNom] = useState("");
+  const [userPrenom, setUserPrenom] = useState("");
+  const [userRole, setUserRole] = useState("");
   const router = useRouter();
+
+  // Fetch user info from cookies on component mount
+  useEffect(() => {
+    const nom = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('user_nom='))
+      ?.split('=')[1];
+
+    const prenom = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('user_prenom='))
+      ?.split('=')[1];
+
+    const role = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('user_role='))
+      ?.split('=')[1];
+
+    if (nom) setUserNom(nom);
+    if (prenom) setUserPrenom(prenom);
+    if (role) setUserRole(role);
+  }, []);
+
   const handleLogout = async () => {
     try {
       // Call the logout endpoint in your NestJS backend
@@ -20,12 +46,17 @@ const Navbar = () => {
     } catch (error) {
       console.error('Logout error:', error);
     }
-  
-    document.cookie = 'access_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT'; // Clear the token
+
+    // Clear cookies
+    document.cookie = 'access_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    document.cookie = 'user_nom=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    document.cookie = 'user_prenom=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
     document.cookie = 'user_role=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-    router.push('/sign-in'); // Redirect to login
+
+    // Redirect to login page
+    router.push('/sign-in');
   };
-  
+
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
@@ -39,7 +70,7 @@ const Navbar = () => {
           type="text"
           placeholder="Rechercher..."
           className="w-[200px] p-2 bg-transparent outline-none"
-          name = "search"
+          name="search"
         />
       </div>
 
@@ -59,9 +90,9 @@ const Navbar = () => {
             onClick={toggleDropdown}
           >
             <div className='flex flex-col'>
-              <span className='text-xs leading-3 font-medium'>John Doe</span>
+              <span className='text-xs leading-3 font-medium'>{userNom.toUpperCase()} {userPrenom.toUpperCase()}</span>
               <span className='text-[10px] text-gray-500 text-right'>
-                Admin
+                {userRole.toUpperCase()}
               </span>
             </div>
             <Image
@@ -95,4 +126,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar
+export default Navbar;
