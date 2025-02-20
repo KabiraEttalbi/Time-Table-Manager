@@ -27,14 +27,16 @@ const LoginPage = () => {
       if (response.ok) {
         // Save the JWT token to cookies
         document.cookie = `access_token=${data.access_token}; path=/;`;
-        document.cookie = `user_role=${data.role}; path=/;`;
+        document.cookie = `user_role=${data.user.role}; path=/;`;
+        document.cookie = `user_nom=${data.user.nom}; path=/;`;
+        document.cookie = `user_prenom=${data.user.prenom}; path=/;`;
 
         // Redirect based on role
-        if (data.role === 'admin') {
+        if (data.user.role === 'admin') {
           router.push('/admin');
-        } else if (data.role === 'etudiant') {
+        } else if (data.user.role === 'etudiant') {
           router.push('/student');
-        } else if (data.role === 'enseignant') {
+        } else if (data.user.role === 'enseignant') {
           router.push('/teacher');
         } else {
           router.push('/');
