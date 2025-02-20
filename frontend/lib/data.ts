@@ -1,8 +1,4 @@
 /* eslint-disable prefer-const */
-// TEMPORARY DATA
-
-export const role = "admin";
-
 //Types
 export type User = {
   _id: string;
@@ -107,6 +103,19 @@ export type Reservation = {
   user: User;
 };
 
+export type Event = {
+  _id: string;
+  salle: Salle;
+  description: string;
+  title: string;
+  date:Date;
+  heureDebut: string;
+  heureFin: string;
+  organizer: User;
+  reservation: Reservation;
+};
+
+
 
 
 export const teachersData = async function getStaticProps() {
@@ -133,9 +142,13 @@ const niveaux: Niveau[] = await res.json();
 return { niveaux };
 };;
 
-export const eventsData = [];
+export const eventsData = async function getStaticProps() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/event`);
+  const events: Event[] = await res.json();
+  return { events };
 
-export const lessonsData = [];
+};
+
 
 export const departementsData = async function getStaticProps() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/departements`)

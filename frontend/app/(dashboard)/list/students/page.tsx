@@ -1,11 +1,13 @@
+'use client';
+
 import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import { role, Student, studentsData } from "@/lib/data";
+import { Student, studentsData } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
-
+import { useUser } from "@/lib/AuthUser";
 
 const columns = [
   {
@@ -41,6 +43,9 @@ const columns = [
 export const {students} = await studentsData();
 
 const StudentListPage = () => {
+  const user = useUser(); // Retrieve the user object from context
+  const role = user?.role || ''; // Extract the role from the user object
+
   const renderRow = (item: Student) => (
     <tr
       key={item._id}

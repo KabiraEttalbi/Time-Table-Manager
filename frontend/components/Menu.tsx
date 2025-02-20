@@ -1,4 +1,6 @@
-import { role } from "@/lib/data";
+"use client";
+
+import { useUser } from "@/lib/AuthUser";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,19 +12,19 @@ const menuItems = [
         icon: "/home.png",
         label: "Acceuil",
         href: "/admin",
-        visible: ["admin", "teacher", "student"],
+        visible: ["admin"],
       },
       {
         icon: "/teacher.png",
         label: "Enseignants",
         href: "/list/teachers",
-        visible: ["admin", "teacher"],
+        visible: ["admin", "enseignant"],
       },
       {
         icon: "/student.png",
         label: "Etudiants",
         href: "/list/students",
-        visible: ["admin", "teacher"],
+        visible: ["admin", "enseignant"],
       },
       {
         icon: "/departement.png",
@@ -40,49 +42,52 @@ const menuItems = [
         icon: "/niveau.png",
         label: "Semestres",
         href: "/list/niveaux",
-        visible: ["admin", "teacher"],
+        visible: ["admin", "enseignant"],
       },
       {
         icon: "/module.png",
         label: "Modules",
         href: "/list/modules",
-        visible: ["admin", "teacher"],
+        visible: ["admin", "enseignant"],
       },
       {
         icon: "/salle.png",
         label: "Salles",
         href: "/list/salles",
-        visible: ["admin", "teacher"],
+        visible: ["admin", "enseignant"],
       },
       {
         icon: "/event.png",
         label: "Evénements",
         href: "/list/events",
-        visible: ["admin", "teacher", "student"],
+        visible: ["admin", "enseignant", "etudiant"],
       },
       {
         icon: "/reservation.png",
         label: "Reservations",
         href: "/list/reservations",
-        visible: ["admin", "teacher"],
+        visible: ["admin", "enseignant"],
       },
       {
         icon: "/calendar.png",
         label: "Emplois du temps",
         href: "/list/timetables",
-        visible: ["admin", "teacher", "student"],
+        visible: ["admin"],
       },
       {
         icon: "/announcement.png",
         label: "Annonces",
         href: "/list/announcement",
-        visible: ["admin", "teacher", "student"],
+        visible: ["admin", "enseignant", "etudiant"],
       }
     ],
   }
 ];
 
 const Menu = () => {
+  const user = useUser(); // Retrieve the user object from context
+  const role = user?.role || ''; // Extract the role from the user object
+
   return (
     <div className="mt-4 text-sm">
       {menuItems.map((i) => (
@@ -91,7 +96,7 @@ const Menu = () => {
             {i.title}
           </span>
           {i.items.map((item) => {
-            if (item.visible.includes(role)) {
+            if (item.visible.includes(role)) { // Check if the role is included in the visible array
               return (
                 <Link
                   href={item.href}

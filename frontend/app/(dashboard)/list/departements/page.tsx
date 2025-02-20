@@ -1,8 +1,11 @@
+'use client';
+
 import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import { Departement, departementsData, role } from "@/lib/data";
+import { useUser } from "@/lib/AuthUser";
+import { Departement, departementsData } from "@/lib/data";
 import Image from "next/image";
 
 const columns = [
@@ -22,7 +25,10 @@ const columns = [
 
 export const { departements } = await departementsData(); 
 
-const Departementlistpage = async () => {
+const Departementlistpage = () => {
+  const user = useUser(); // Retrieve the user object from context
+  const role = user?.role || ''; // Extract the role from the user object
+
     const renderRow = (item: Departement) => (
         <tr
           key={item._id}

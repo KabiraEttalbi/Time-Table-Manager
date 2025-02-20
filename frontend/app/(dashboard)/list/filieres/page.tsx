@@ -1,9 +1,12 @@
+'use client';
+
 import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import { role, optionsData, Option} from "@/lib/data";
+import {optionsData, Option} from "@/lib/data";
 import Image from "next/image";
+import { useUser } from "@/lib/AuthUser";
 
 const columns = [
   {
@@ -31,6 +34,9 @@ const columns = [
 export const { options } = await optionsData(); 
 
 const OptionListPage = () => {
+  const user = useUser(); // Retrieve the user object from context
+  const role = user?.role || ''; // Extract the role from the user object
+
   const renderRow = (item: Option) => (
     <tr
       key={item._id}
