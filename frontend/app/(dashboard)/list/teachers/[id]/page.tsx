@@ -1,8 +1,8 @@
 import Announcements from "@/components/Announcements";
 import BigCalendar from "@/components/BigCalender";
 import Image from "next/image";
-import { teachers } from "../page";
 import { schedulesData } from "@/lib/data";
+import { teachers,modules } from "../page";
 import FormModal from "@/components/FormModal";
 import { useUser } from "@/lib/AuthUser";
 
@@ -20,6 +20,13 @@ const SingleTeacherPage = async ({ params }: { params: { id: string } }) => {
   if (!teacher) {
     return <div>Teacher not found</div>;
   }
+  console.log("Teacher ID:", id);
+console.log("Modules:", modules);
+   // Filtrer les modules associés à l'enseignant
+   const teacherModules = modules.filter((module) => module.teacher._id === id);
+  console.log(teacherModules,"teacher modules ");
+
+
   const schedule = schedules.filter((schedule) => schedule.user._id === teacher?.user._id);
   // console.log(schedule)
   console.log(Object.keys(schedule));
@@ -105,9 +112,16 @@ const SingleTeacherPage = async ({ params }: { params: { id: string } }) => {
             <div className="flex justify-between items-center mb-4"> {/* Ajout d'un conteneur flex pour aligner le titre et le bouton */}
               <h1>Emploi du Temps</h1>
 
-              <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
-                {role === "admin" ? <FormModal table="teachercreate" type="create" /> : "Créer un emploi"}
-              </button>
+              {role === "admin" ? (
+                <div className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer">
+                  <FormModal table="timetable" type="create" />
+                </div>
+              ) : (
+                <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+                  Créer un emploi
+                </button>
+              )}
+
 
 
 
