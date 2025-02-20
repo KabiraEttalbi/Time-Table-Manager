@@ -1,13 +1,14 @@
 "use client";
 
 import { Calendar, momentLocalizer, View, Views } from "react-big-calendar";
-import moment from "moment";
+import moment, { localeData } from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useState } from "react";
 import "moment/locale/fr"; // Import French locale for moment
-import { Emploidutemps } from "@/lib/data";
+import { Emploidutemps, role } from "@/lib/data";
 import jsPDF from "jspdf";
 import "jspdf-autotable"; // Pour générer des tableaux dans jsPDF
+import FormModal from "./FormModal";
 
 // Set moment's locale to French
 moment.locale("fr");
@@ -63,6 +64,7 @@ const BigCalendar = ({ schedules }) => {
     }
 
     if(schedule.type ==="teacher"){
+      
       return {
         title: `${schedule?.module?.name} \n ${schedule?.salle?.name} \n ${schedule?.module?.option?.name}`,
         start: new Date(
@@ -125,8 +127,13 @@ const BigCalendar = ({ schedules }) => {
     doc.save("emploi_du_temps.pdf");
   };
 
+  
+
   return (
     <div>
+    
+    
+
       
       <Calendar
         localizer={localizer}
@@ -157,6 +164,6 @@ const BigCalendar = ({ schedules }) => {
     </div>
     
   );
-};
+}
 
 export default BigCalendar;

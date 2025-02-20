@@ -2,23 +2,24 @@ import Announcements from "@/components/Announcements";
 import BigCalendar from "@/components/BigCalender";
 import Image from "next/image";
 import { teachers } from "../page";
-import { schedulesData } from "@/lib/data";
+import { Emploidutemps, role, schedulesData } from "@/lib/data";
+import FormModal from "@/components/FormModal";
 
 
-export const {schedules} = await schedulesData();
+export const { schedules } = await schedulesData();
 console.log(schedules)
 
 const SingleTeacherPage = async ({ params }: { params: { id: string } }) => {
   const { id } = await params; // Get teacher ID from URL
   const teacher = teachers.find((teacher) => teacher._id === id);
-    // Check if student exists
-    if (!teacher) {
-      return <div>Student not found</div>;
-    }
-    const schedule = schedules.filter((schedule) => schedule.user._id === teacher?.user._id);
-  console.log(schedule)
-  
-  
+  // Check if teacher exists
+  if (!teacher) {
+    return <div>Teacher not found</div>;
+  }
+  const schedule = schedules.filter((schedule) => schedule.user._id === teacher?.user._id);
+  // console.log(schedule)
+  console.log(Object.keys(schedule));
+
   if (teacher) {
     return (
       <div className="flex-1 p-4 flex flex-col gap-4 xl:flex-row">
@@ -39,9 +40,8 @@ const SingleTeacherPage = async ({ params }: { params: { id: string } }) => {
               </div>
               <div className="w-2/3 flex flex-col justify-between gap-4">
                 <div className="flex items-center gap-4">
-                  <h1 className="text-xl font-semibold">{`${
-                  teacher.user.nom + " " + teacher.user.prenom
-                }`}</h1>
+                  <h1 className="text-xl font-semibold">{`${teacher.user.nom + " " + teacher.user.prenom
+                    }`}</h1>
                 </div>
 
                 <div className="flex items-center justify-between gap-2 flex-wrap text-xs font-medium">
@@ -98,7 +98,17 @@ const SingleTeacherPage = async ({ params }: { params: { id: string } }) => {
           </div>
           {/* BOTTOM */}
           <div className="mt-4 bg-white rounded-md p-4 h-[800px]">
-            <h1>Emploi du Temps</h1>
+            <div className="flex justify-between items-center mb-4"> {/* Ajout d'un conteneur flex pour aligner le titre et le bouton */}
+              <h1>Emploi du Temps</h1>
+
+              <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+                {role === "admin" ? <FormModal table="teachercreate" type="create" /> : "Créer un emploi"}
+              </button>
+
+
+
+
+            </div>
             <BigCalendar schedules={schedule} />
           </div>
         </div>
@@ -108,7 +118,7 @@ const SingleTeacherPage = async ({ params }: { params: { id: string } }) => {
         </div>
       </div>
     );
-  }    
+  }
 };
 
 export default SingleTeacherPage;
