@@ -1,11 +1,61 @@
 'use client';
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [userNom, setUserNom] = useState("");
+  const [userPrenom, setUserPrenom] = useState("");
+  const [userRole, setUserRole] = useState("");
+  const router = useRouter();
+
+  // Fetch user info from cookies on component mount
+  useEffect(() => {
+    const nom = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('user_nom='))
+      ?.split('=')[1];
+
+    const prenom = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('user_prenom='))
+      ?.split('=')[1];
+
+    const role = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('user_role='))
+      ?.split('=')[1];
+
+    if (nom) setUserNom(nom);
+    if (prenom) setUserPrenom(prenom);
+    if (role) setUserRole(role);
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      // Call the logout endpoint in your NestJS backend
+      await fetch('http://localhost:3001/auth/logout', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        },
+      });
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+
+    // Clear cookies
+    document.cookie = 'access_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    document.cookie = 'user_nom=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    document.cookie = 'user_prenom=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    document.cookie = 'user_role=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+
+    // Redirect to login page
+    router.push('/sign-in');
+  };
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -20,7 +70,7 @@ const Navbar = () => {
           type="text"
           placeholder="Rechercher..."
           className="w-[200px] p-2 bg-transparent outline-none"
-          name = "search"
+          name="search"
         />
       </div>
 
@@ -40,9 +90,9 @@ const Navbar = () => {
             onClick={toggleDropdown}
           >
             <div className='flex flex-col'>
-              <span className='text-xs leading-3 font-medium'>John Doe</span>
+              <span className='text-xs leading-3 font-medium'>{userNom.toUpperCase()} {userPrenom.toUpperCase()}</span>
               <span className='text-[10px] text-gray-500 text-right'>
-                Admin
+                {userRole.toUpperCase()}
               </span>
             </div>
             <Image
@@ -65,7 +115,7 @@ const Navbar = () => {
                   <FaCog className='text-gray-500' /> Paramètres
                 </li>
                 <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2'>
-                  <FaSignOutAlt className='text-gray-500' /> Déconnexion
+                  <FaSignOutAlt className='text-gray-500' /> <button onClick={handleLogout}>Déconnexion</button>
                 </li>
               </ul>
             </div>
@@ -76,4 +126,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar
+export default Navbar;
