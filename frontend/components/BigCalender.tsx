@@ -5,9 +5,10 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useState } from "react";
 import "moment/locale/fr"; // Import French locale for moment
-import { Emploidutemps } from "@/lib/data";
+import { Emploidutemps, role } from "@/lib/data";
 import jsPDF from "jspdf";
 import "jspdf-autotable"; // Pour générer des tableaux dans jsPDF
+import FormModal from "./FormModal";
 
 // Set moment's locale to French
 moment.locale("fr");
@@ -63,6 +64,21 @@ const BigCalendar = ({ schedules }) => {
     }
 
     if(schedule.type ==="teacher"){
+       // Affichage du bouton "Créer un emploi" uniquement si il y a des emplois du temps de type "teacher"
+  // if (schedules.some((schedule: Emploidutemps) => schedule.type === "teacher")) {
+  //   return (
+  //     <div className="mb-4">
+  //       <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+  //         Créer un emploi
+  //       </button>
+  //     </div>
+  //   );
+  // }
+
+  // // Vérification du rôle de l'utilisateur et affichage de FormModal si l'utilisateur est un administrateur
+  // if (role === "admin") {
+  //   return <FormModal table="reservation" type="create" />;
+  // }
       return {
         title: `${schedule?.module?.name} \n ${schedule?.salle?.name} \n ${schedule?.module?.option?.name}`,
         start: new Date(
@@ -125,8 +141,20 @@ const BigCalendar = ({ schedules }) => {
     doc.save("emploi_du_temps.pdf");
   };
 
+  
+
   return (
     <div>
+    
+      {/* Affichage du bouton "Créer un emploi" en haut à gauche */}
+      {schedules.some((schedule: Emploidutemps) => schedule.type === "teacher") && (
+        <div className="absolute top-4 right-4">
+          <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+            Créer un emploi
+          </button>
+        </div>
+      )}
+
       
       <Calendar
         localizer={localizer}
@@ -142,6 +170,15 @@ const BigCalendar = ({ schedules }) => {
         max={new Date(2025, 1, 0, 19, 0, 0)}
         messages={messages} // Pass French translations
       />
+
+      {/* <div>
+        if(schedule.type ==="teacher"){
+          
+        <button>
+          Creer un emploi
+        </button>
+    }
+      </div> */}
     <div className="mt-4"> {/* Ajoute une marge en haut pour l'espace */}
   {/* Bouton aligné à droite avec espace */}
   <div className="mt-4 flex justify-end">
