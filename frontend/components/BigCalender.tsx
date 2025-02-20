@@ -139,7 +139,7 @@ const BigCalendar = ({ schedules }) => {
         style={{ height: "98%" }}
         onView={handleOnChangeView}
         min={new Date(2025, 1, 0, 8, 0, 0)}
-        max={new Date(2025, 1, 0, 17, 0, 0)}
+        max={new Date(2025, 1, 0, 19, 0, 0)}
         messages={messages} // Pass French translations
       />
     <div className="mt-4"> {/* Ajoute une marge en haut pour l'espace */}
