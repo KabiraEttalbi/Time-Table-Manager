@@ -3,22 +3,58 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    router.push('/admin');
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Save the JWT token to cookies
+        document.cookie = `access_token=${data.access_token}; path=/;`;
+        document.cookie = `user_role=${data.role}; path=/;`;
+
+        // Redirect based on role
+        if (data.role === 'admin') {
+          router.push('/admin');
+        } else if (data.role === 'etudiant') {
+          router.push('/student');
+        } else if (data.role === 'enseignant') {
+          router.push('/teacher');
+        } else {
+          router.push('/');
+        }
+        console.log(data);
+        console.log('User logged in');
+      } else {
+        // If the login fails, display an error message
+        setError(data.message || 'La connexion a échoué. Veuillez vérifier vos informations et réessayer.');
+      }
+    } catch (error) {
+      setError("Une erreur s'est produite veuillez réessayer.");
+    }
   };
 
   return (
     <div className='min-h-screen flex items-center justify-center bg-gray-100'>
       <div className='bg-white p-8 rounded-lg shadow-md w-full max-w-md'>
         <h2 className='text-2xl font-bold mb-6 text-center'>Login</h2>
+        {error && <p className='text-red-500 text-sm mb-4 text-center'>{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className='mb-4'>
             <label htmlFor='email' className='block text-sm font-medium text-gray-700'>
