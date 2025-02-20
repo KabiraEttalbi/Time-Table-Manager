@@ -3,10 +3,29 @@
 import { useState } from "react";
 import { FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  const router = useRouter();
+  const handleLogout = async () => {
+    try {
+      // Call the logout endpoint in your NestJS backend
+      await fetch('http://localhost:3001/auth/logout', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        },
+      });
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  
+    document.cookie = 'access_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT'; // Clear the token
+    document.cookie = 'user_role=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    router.push('/sign-in'); // Redirect to login
+  };
+  
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
@@ -65,7 +84,7 @@ const Navbar = () => {
                   <FaCog className='text-gray-500' /> Paramètres
                 </li>
                 <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2'>
-                  <FaSignOutAlt className='text-gray-500' /> Déconnexion
+                  <FaSignOutAlt className='text-gray-500' /> <button onClick={handleLogout}>Déconnexion</button>
                 </li>
               </ul>
             </div>
