@@ -5,10 +5,9 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useState } from "react";
 import "moment/locale/fr"; // Import French locale for moment
-import { Emploidutemps, role } from "@/lib/data";
+import { Emploidutemps } from "@/lib/data";
 import jsPDF from "jspdf";
 import "jspdf-autotable"; // Pour générer des tableaux dans jsPDF
-import FormModal from "./FormModal";
 
 // Set moment's locale to French
 moment.locale("fr");
@@ -64,19 +63,6 @@ const BigCalendar = ({ schedules }) => {
     }
 
     if(schedule.type ==="teacher"){
-      if (schedules.some((schedule: Emploidutemps) => schedule.type === "teacher")) {
-        return (
-          <div className="mb-4">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
-              Créer un emploi
-            </button>
-          </div>
-        );
-      }
-      // Vérification du rôle de l'utilisateur et affichage de FormModal si l'utilisateur est un administrateur
-  if (role === "admin") {
-    return <FormModal table="teachers" type="create" />;
-  }
       return {
         title: `${schedule?.module?.name} \n ${schedule?.salle?.name} \n ${schedule?.module?.option?.name}`,
         start: new Date(
