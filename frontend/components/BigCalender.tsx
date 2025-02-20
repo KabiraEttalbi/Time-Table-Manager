@@ -42,24 +42,46 @@ const BigCalendar = ({ schedules }) => {
     const startDate = moment(schedule.jour, "dddd").toDate();
     const startTime = moment(schedule.heureDebut, "HH:mm").toDate();
     const endTime = moment(schedule.heureFin, "HH:mm").toDate();
+    if(schedule.type ==="student"){
+      return {
+        title: `${schedule?.module?.name} \n ${schedule?.salle?.name}`,
+        start: new Date(
+          startDate.getFullYear(),
+          startDate.getMonth(),
+          startDate.getDate(),
+          startTime.getHours(),
+          startTime.getMinutes()
+        ),
+        end: new Date(
+          startDate.getFullYear(),
+          startDate.getMonth(),
+          startDate.getDate(),
+          endTime.getHours(),
+          endTime.getMinutes()
+        ),
+      };
+    }
 
-    return {
-      title: `${schedule?.module?.name} \n ${schedule?.salle?.name}`,
-      start: new Date(
-        startDate.getFullYear(),
-        startDate.getMonth(),
-        startDate.getDate(),
-        startTime.getHours(),
-        startTime.getMinutes()
-      ),
-      end: new Date(
-        startDate.getFullYear(),
-        startDate.getMonth(),
-        startDate.getDate(),
-        endTime.getHours(),
-        endTime.getMinutes()
-      ),
-    };
+    if(schedule.type ==="teacher"){
+      return {
+        title: `${schedule?.module?.name} \n ${schedule?.salle?.name} \n ${schedule?.module?.option?.name}`,
+        start: new Date(
+          startDate.getFullYear(),
+          startDate.getMonth(),
+          startDate.getDate(),
+          startTime.getHours(),
+          startTime.getMinutes()
+        ),
+        end: new Date(
+          startDate.getFullYear(),
+          startDate.getMonth(),
+          startDate.getDate(),
+          endTime.getHours(),
+          endTime.getMinutes()
+        ),
+      };
+    }
+    
   });
 
   const handleExportPDF = () => {
