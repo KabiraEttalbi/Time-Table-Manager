@@ -146,14 +146,7 @@ const BigCalendar = ({ schedules }) => {
   return (
     <div>
     
-      {/* Affichage du bouton "Créer un emploi" en haut à gauche */}
-      {schedules.some((schedule: Emploidutemps) => schedule.type === "teacher") && (
-        <div className="absolute top-4 right-4">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
-            Créer un emploi
-          </button>
-        </div>
-      )}
+    
 
       
       <Calendar

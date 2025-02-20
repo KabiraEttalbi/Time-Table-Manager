@@ -52,6 +52,7 @@ const FormModal = ({
     | "module"
     | "salle"
     | "reservation"
+    |"teachercreate"
     ;
 
   type: "create" | "update" | "delete";
