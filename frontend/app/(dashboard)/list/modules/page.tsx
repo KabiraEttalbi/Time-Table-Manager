@@ -7,6 +7,7 @@ import TableSearch from "@/components/TableSearch";
 import { Module, modulesData} from "@/lib/data";
 import Image from "next/image";
 import { useUser } from "@/lib/AuthUser";
+import {useState, useEffect} from "react";
 
 const columns = [
   {
@@ -35,11 +36,24 @@ const columns = [
   },
 ];
 
-export  const { modules } = await modulesData();
+export function useModules() {
+  const [modules, setModules] = useState<Module[]>([]);
+  useEffect(() => {
+    async function fetchData() {
+      const { modules } = await modulesData();
+      setModules(modules);
+    }
+    fetchData();
+  }, []);
+
+  return modules; // On retourne `Modules` pour pouvoir l'utiliser ailleurs
+}
+
 
 const ModuleListPage = () => {
   const user = useUser(); // Retrieve the user object from context
   const role = user?.role || ''; // Extract the role from the user object
+  const modules = useModules();
 
   const renderRow = (item: Module) => (
     <tr

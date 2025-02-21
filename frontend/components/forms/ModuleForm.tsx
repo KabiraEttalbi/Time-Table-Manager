@@ -10,7 +10,7 @@ import axios from "axios";
 import { useOptions } from "@/app/(dashboard)/list/filieres/page";
 import { Niveau, Option, Teacher } from "@/lib/data";
 import { useEffect } from "react"; // Add useEffect for pre-filling form data
-import { modules } from "@/app/(dashboard)/list/modules/page";
+import { useModules } from "@/app/(dashboard)/list/modules/page";
 import { niveaux } from "@/app/(dashboard)/list/niveaux/page";
 import { teachers } from "@/app/(dashboard)/list/teachers/page";
 
@@ -59,6 +59,7 @@ const ModuleForm = ({
   }, [type, data, setValue]);
 
   const options = useOptions();
+  const modules = useModules();
 
   const onSubmit = handleSubmit(async (formData) => {
     try {
