@@ -33,8 +33,13 @@ const Navbar = () => {
     router.push('/sign-in');
   };
 
+
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleProfileClick = () => {
+    router.push('/profile'); // Redirige vers la page de profil
   };
 
   return (
@@ -84,11 +89,8 @@ const Navbar = () => {
           {isDropdownOpen && (
             <div className='absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10'>
               <ul className='py-2'>
-                <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2'>
+                <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2' onClick={handleProfileClick}>
                   <FaUser className='text-gray-500' /> Profil
-                </li>
-                <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2'>
-                  <FaCog className='text-gray-500' /> Paramètres
                 </li>
                 <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2'>
                   <FaSignOutAlt className='text-gray-500' /> <button onClick={handleLogout}>Déconnexion</button>
