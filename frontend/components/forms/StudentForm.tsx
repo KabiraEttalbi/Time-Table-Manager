@@ -10,7 +10,7 @@ import Image from "next/image";
 import axios from "axios";
 import { useOptions } from "@/app/(dashboard)/list/filieres/page";
 import { useNiveaux } from "@/app/(dashboard)/list/niveaux/page";
-import { students } from "@/app/(dashboard)/list/students/page";
+import { useStudents } from "@/app/(dashboard)/list/students/page";
 import { Niveau, Option } from "@/lib/data";
 import { useEffect, useState } from "react"; // Add useEffect for pre-filling form data
 
@@ -119,7 +119,8 @@ const StudentForm = ({
     }
   };
   const options = useOptions();
-  const niveaux = useNiveaux()
+  const niveaux = useNiveaux();
+  const students = useStudents();
 
   const onSubmit = handleSubmit(async (formData) => {
     try {

@@ -3,7 +3,7 @@
 import Announcements from "@/components/Announcements";
 import BigCalendar from "@/components/BigCalender";
 import Image from "next/image";
-import { students } from "../page";
+import { useStudents } from "../page";
 import { schedulesData } from "@/lib/data";
 import { useUser } from "@/lib/AuthUser";
 import React from "react";
@@ -13,7 +13,7 @@ export const {schedules} = await schedulesData();
 console.log(schedules)
 
 const SingleStudentPage =  ({ params }) => {
-
+  const students = useStudents();
   const user = useUser(); // Retrieve the user object from context
   const role = user?.role || ''; // Extract the role from the user object
   

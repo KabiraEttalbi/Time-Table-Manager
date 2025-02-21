@@ -8,6 +8,7 @@ import { Student, studentsData } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 import { useUser } from "@/lib/AuthUser";
+import { useEffect, useState } from "react";
 
 const columns = [
   {
@@ -40,11 +41,25 @@ const columns = [
   },
 ];
 
-export const {students} = await studentsData();
+export function useStudents() {
+  const [students, setStudentss] = useState<Student[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const { students } = await studentsData();
+      setStudentss(students);
+    }
+    fetchData();
+  }, []);
+
+  return students; // On retourne `Studentss` pour pouvoir l'utiliser ailleurs
+}
+
 
 const StudentListPage = () => {
   const user = useUser(); // Retrieve the user object from context
   const role = user?.role || ''; // Extract the role from the user object
+  const students = useStudents();
 
   const renderRow = (item: Student) => (
     <tr
