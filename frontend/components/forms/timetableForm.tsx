@@ -8,7 +8,7 @@ import { z } from "zod";
 import axios from "axios";
 import { Module, Salle, Teacher } from "@/lib/data";
 import { useEffect, useState } from "react";
-import { reservations } from "@/app/(dashboard)/list/reservations/page";
+import { useReservations } from "@/app/(dashboard)/list/reservations/page";
 import { useModules } from "@/app/(dashboard)/list/modules/page";
 import { useSalles } from "@/app/(dashboard)/list/salles/page";
 import { schedules } from "@/app/(dashboard)/list/students/[id]/page";
@@ -51,6 +51,7 @@ const TimetableForm = ({
   
   const salles = useSalles();
   const modules = useModules();
+  const reservations = useReservations();
   const [teacherModules, setTeacherModules] = useState<Module[]>([]);
   const [conflictError, setConflictError] = useState<string | null>(null);
 

@@ -5,7 +5,7 @@ import InputField from "../InputField";
 import axios from "axios";
 import { Salle, Module } from "@/lib/data";
 import { useEffect } from "react";
-import { reservations } from "@/app/(dashboard)/list/reservations/page";
+import { useReservations } from "@/app/(dashboard)/list/reservations/page";
 import { useSalles } from "@/app/(dashboard)/list/salles/page";
 import { useModules } from "@/app/(dashboard)/list/modules/page";
 import { useUser } from "@/lib/AuthUser";
@@ -77,6 +77,7 @@ const ReservationForm = ({
 
   const salles = useSalles();
   const modules = useModules();
+  const reservations = useReservations();
 
 
   // Pre-fill form fields if in update mode

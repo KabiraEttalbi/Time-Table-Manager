@@ -9,7 +9,7 @@ import InputField from "../InputField";
 import axios from "axios";
 import { Salle} from "@/lib/data";
 import { useEffect } from "react"; // Add useEffect for pre-filling form data
-import { reservations } from "@/app/(dashboard)/list/reservations/page";
+import { useReservations } from "@/app/(dashboard)/list/reservations/page";
 import { useSalles } from "@/app/(dashboard)/list/salles/page";
 
 const schema = z.object({
@@ -65,6 +65,7 @@ const EventForm = ({
   };
 
   const salles = useSalles();
+  const reservations = useReservations();
   
   // Pre-fill form fields if in update mode
   useEffect(() => {

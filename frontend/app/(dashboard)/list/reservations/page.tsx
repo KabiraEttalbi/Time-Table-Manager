@@ -7,6 +7,7 @@ import TableSearch from "@/components/TableSearch";
 import { Reservation, reservationsData } from "@/lib/data";
 import Image from "next/image";
 import { useUser } from "@/lib/AuthUser";
+import { useEffect, useState } from "react";
 
 const columns = [
   {
@@ -40,11 +41,23 @@ const columns = [
   },
 ];
 
-export  const { reservations } = await reservationsData();
+export function useReservations() {
+  const [reservations, setReservations] = useState<Reservation[]>([]);
+  useEffect(() => {
+    async function fetchData() {
+      const { reservations } = await reservationsData();
+      setReservations(reservations);
+    }
+    fetchData();
+  }, []);
+
+  return reservations; // On retourne `reservations` pour pouvoir l'utiliser ailleurs
+}
 
 const ReservationListPage = () => {
   const user = useUser(); // Retrieve the user object from context
   const role = user?.role || ''; // Extract the role from the user object
+  const reservations = useReservations();
 
   const renderRow = (item: Reservation) => (
     <tr
