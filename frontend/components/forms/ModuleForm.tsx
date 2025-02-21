@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import InputField from "../InputField";
 import axios from "axios";
-import { options } from "@/app/(dashboard)/list/filieres/page";
+import { useOptions } from "@/app/(dashboard)/list/filieres/page";
 import { Niveau, Option, Teacher } from "@/lib/data";
 import { useEffect } from "react"; // Add useEffect for pre-filling form data
 import { modules } from "@/app/(dashboard)/list/modules/page";
@@ -57,6 +57,8 @@ const ModuleForm = ({
       }
     }
   }, [type, data, setValue]);
+
+  const options = useOptions();
 
   const onSubmit = handleSubmit(async (formData) => {
     try {

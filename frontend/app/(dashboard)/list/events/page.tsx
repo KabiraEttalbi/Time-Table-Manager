@@ -7,6 +7,7 @@ import TableSearch from "@/components/TableSearch";
 import { eventsData, Event } from "@/lib/data";
 import Image from "next/image";
 import { useUser } from "@/lib/AuthUser";
+import {useState, useEffect} from 'react';
 
 const columns = [
   {
@@ -43,11 +44,25 @@ const columns = [
   },
 ];
 
-export const {events} = await eventsData()
+export function useEvents() {
+  const [events, setEvents] = useState<Event[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const { events } = await eventsData();
+      setEvents(events);
+    }
+    fetchData();
+  }, []);
+
+  return events; // On retourne `Events` pour pouvoir l'utiliser ailleurs
+}
+
 
 const EventListPage = () => {
   const user = useUser(); // Retrieve the user object from context
   const role = user?.role || ''; // Extract the role from the user object
+  const events = useEvents();
 
   const renderRow = (item: Event) => (
     <tr

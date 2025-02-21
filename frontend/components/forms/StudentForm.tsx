@@ -8,7 +8,7 @@ import { z } from "zod";
 import InputField from "../InputField";
 import Image from "next/image";
 import axios from "axios";
-import { options } from "@/app/(dashboard)/list/filieres/page";
+import { useOptions } from "@/app/(dashboard)/list/filieres/page";
 import { niveaux } from "@/app/(dashboard)/list/niveaux/page";
 import { students } from "@/app/(dashboard)/list/students/page";
 import { Niveau, Option } from "@/lib/data";
@@ -118,7 +118,7 @@ const StudentForm = ({
       reader.readAsDataURL(file);
     }
   };
-
+  const options = useOptions();
 
   const onSubmit = handleSubmit(async (formData) => {
     try {

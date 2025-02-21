@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import InputField from "../InputField";
 import axios from "axios";
-import { options } from "@/app/(dashboard)/list/filieres/page";
+import { useOptions } from "@/app/(dashboard)/list/filieres/page";
 import {useDepartements} from "@/app/(dashboard)/list/departements/page"
 
 import { useEffect } from "react"; // Add useEffect for pre-filling form data
@@ -40,7 +40,7 @@ const OptionForm = ({
   });
 
   const departements = useDepartements();
-  
+  const options = useOptions();
 
   // Pre-fill form fields if in update mode
   useEffect(() => {
