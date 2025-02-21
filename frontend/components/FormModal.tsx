@@ -15,6 +15,7 @@ import EventForm from "./forms/EventForm";
 import TimetableForm from "./forms/timetableForm";
 
 
+
 const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
   loading: () => <h1>Chargement...</h1>,
 });
@@ -36,7 +37,7 @@ const forms: {
   salle: (type, data, onSuccess) => <SalleForm type={type} data={data} onSuccess={onSuccess} />,
   reservation: (type, data, onSuccess) => <ReservationForm type={type} data={data} onSuccess={onSuccess} />,
   event: (type, data, onSuccess) => <EventForm type={type} data={data} onSuccess={onSuccess} />,
-  timetable: (type, data, onSuccess) => <TimetableForm type={type} data={data} onSuccess={onSuccess}  />,
+  timetable: (type, data, onSuccess ) => <TimetableForm type={type} data={data} onSuccess={onSuccess} />,
 };
 
 
@@ -64,6 +65,7 @@ const FormModal = ({
   type: "create" | "update" | "delete";
   data?: any;
   id?: string;
+  
 
 }) => {
   const size = type === "create" ? "w-8 h-8" : "w-7 h-7";
