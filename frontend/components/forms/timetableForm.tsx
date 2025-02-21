@@ -8,12 +8,12 @@ import { z } from "zod";
 import InputField from "../InputField";
 import axios from "axios";
 import { Module, Salle, Teacher } from "@/lib/data";
-import { useEffect, useState } from "react";
 import { reservations } from "@/app/(dashboard)/list/reservations/page";
 import { salles } from "@/app/(dashboard)/list/salles/page";
 import { modules } from "@/app/(dashboard)/list/modules/page";
 import { schedulesData} from "@/lib/data";
 import { schedules } from "@/app/(dashboard)/list/students/[id]/page";
+import { useState } from "react";
 
 const morningStartHours = ["08:00", "09:00", "10:00", "11:00"];
 const afternoonStartHours = ["13:00", "14:00", "15:00", "16:00"];
@@ -39,7 +39,6 @@ const TimetableForm = ({
   data?: any;
   onSuccess?: () => void;
   teacher?: Teacher;
- 
 }) => {
   const {
     register,
@@ -50,39 +49,36 @@ const TimetableForm = ({
   } = useForm<Inputs>({
     resolver: zodResolver(schema),
   });
-  
-  const [teacherModules, setTeacherModules] = useState<Module[]>([]);
+
   const [conflictError, setConflictError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (teacher) {
-      const filteredModules = modules.filter(module => module.teacher._id === teacher._id);
-      setTeacherModules(filteredModules);
-    }
-  }, [teacher, modules]);
+  // Log teacher and modules before rendering options
+  console.log("Teacher data:", teacher);
+  console.log("Modules data:", teacher?.modules);
+
   const onSubmit = handleSubmit(async (formData) => {
     try {
       if (!isSalleAvailable(formData.salle, formData.heureDebut, formData.heureFin)) {
         setConflictError("La salle n'est pas disponible pour ce créneau horaire.");
         return;
       }
-  
+
       if (hasStudentConflict(formData.heureDebut, formData.heureFin)) {
         setConflictError("Conflit avec l'emploi du temps des étudiants.");
         return;
       }
-  
+
       const payload = {
         module: formData.module,
         salle: formData.salle,
         heureDebut: formData.heureDebut,
         heureFin: formData.heureFin,
       };
-  
+
       if (onSuccess) {
         onSuccess();
       }
-  
+
       if (type === "update") {
         const response = await axios.put(
           `http://localhost:3001/reservation/${data._id}`,
@@ -100,23 +96,24 @@ const TimetableForm = ({
       console.error("Erreur:", error.response.data || error.message);
     }
   });
+
   const isSalleAvailable = (salleId: string, heureDebut: string, heureFin: string) => {
     const reservationsForSalle = reservations.filter(reservation => reservation.salle._id === salleId);
     const newStartTime = new Date(`1970-01-01T${heureDebut}`);
     const newEndTime = new Date(`1970-01-01T${heureFin}`);
-  
+
     return !reservationsForSalle.some(reservation => {
       const reservationStartTime = new Date(`1970-01-01T${reservation.heureDebut}`);
       const reservationEndTime = new Date(`1970-01-01T${reservation.heureFin}`);
       return (newStartTime < reservationEndTime && newEndTime > reservationStartTime);
     });
   };
-  
+
   const hasStudentConflict = (heureDebut: string, heureFin: string) => {
     const studentSchedules = schedules.filter(schedule => schedule.type === "student");
     const newStartTime = new Date(`1970-01-01T${heureDebut}`);
     const newEndTime = new Date(`1970-01-01T${heureFin}`);
-  
+
     return studentSchedules.some(schedule => {
       const scheduleStartTime = new Date(`1970-01-01T${schedule.heureDebut}`);
       const scheduleEndTime = new Date(`1970-01-01T${schedule.heureFin}`);
@@ -131,8 +128,6 @@ const TimetableForm = ({
       </h1>
 
       <div className="flex justify-between flex-wrap gap-4">
-  
-
         {/* Sélection du module */}
         <div className="flex flex-col gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">Module</label>
@@ -140,10 +135,10 @@ const TimetableForm = ({
             className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm"
             {...register("module")}
           >
-            <option value="" >Sélectionner un module</option>
+            <option value="">Sélectionner un module</option>
             {teacher?.modules?.map((module) => (
               <option key={module._id} value={module._id}>
-                 {module.name}
+                {module.name}
               </option>
             ))}
           </select>
@@ -159,7 +154,7 @@ const TimetableForm = ({
             className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm"
             {...register("salle")}
           >
-            <option value="" hidden>Sélectionner une salle</option>
+            <option value="">Sélectionner une salle</option>
             {salles.map((salle) => (
               <option key={salle._id} value={salle._id}>
                 {salle.name}
@@ -178,7 +173,7 @@ const TimetableForm = ({
             className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm"
             {...register("heureDebut")}
           >
-            <option value="" hidden>Sélectionner l'heure de début</option>
+            <option value="">Sélectionner l'heure de début</option>
             <optgroup label="Matin">
               {morningStartHours.map((time) => (
                 <option key={time} value={time}>
@@ -206,7 +201,7 @@ const TimetableForm = ({
             className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm"
             {...register("heureFin")}
           >
-            <option value="" hidden>Sélectionner l'heure de fin</option>
+            <option value="">Sélectionner l'heure de fin</option>
             <optgroup label="Matin">
               {morningEndHours.map((time) => (
                 <option key={time} value={time}>
@@ -236,6 +231,7 @@ const TimetableForm = ({
     </form>
   );
 };
+
 
 export default TimetableForm;
 
