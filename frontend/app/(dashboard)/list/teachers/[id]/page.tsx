@@ -110,9 +110,16 @@ const SingleTeacherPage = ({ params }) => {
             <div className="flex justify-between items-center mb-4"> {/* Ajout d'un conteneur flex pour aligner le titre et le bouton */}
               <h1>Emploi du Temps</h1>
 
-              <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
-                {role === "admin" ? <FormModal table="teachercreate" type="create" /> : "Créer un emploi"}
-              </button>
+              {role === "admin" ? (
+                <div className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer">
+                  <FormModal table="timetable" type="create" />
+                </div>
+              ) : (
+                <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+                  Créer un emploi
+                </button>
+              )}
+
 
 
 

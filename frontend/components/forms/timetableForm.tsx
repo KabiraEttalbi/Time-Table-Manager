@@ -50,7 +50,7 @@ const TimetableForm = ({
   } = useForm<Inputs>({
     resolver: zodResolver(schema),
   });
-
+  
   const [teacherModules, setTeacherModules] = useState<Module[]>([]);
   const [conflictError, setConflictError] = useState<string | null>(null);
 
