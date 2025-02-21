@@ -8,7 +8,7 @@ import { z } from "zod";
 import InputField from "../InputField";
 import axios from "axios";
 import { options } from "@/app/(dashboard)/list/filieres/page";
-import {departements} from "@/app/(dashboard)/list/departements/page"
+import {useDepartements} from "@/app/(dashboard)/list/departements/page"
 
 import { useEffect } from "react"; // Add useEffect for pre-filling form data
 import { Departement } from "@/lib/data";
@@ -39,6 +39,8 @@ const OptionForm = ({
     resolver: zodResolver(schema),
   });
 
+  const departements = useDepartements();
+  
 
   // Pre-fill form fields if in update mode
   useEffect(() => {

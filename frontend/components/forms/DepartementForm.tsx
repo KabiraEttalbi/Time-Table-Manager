@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import InputField from "../InputField";
 import axios from "axios";
-import { departements } from "@/app/(dashboard)/list/departements/page";
+import { useDepartements } from "@/app/(dashboard)/list/departements/page";
 import { useEffect } from "react"; // Add useEffect for pre-filling form data
 
 const schema = z.object({
@@ -34,6 +34,7 @@ const DepartementForm = ({
     resolver: zodResolver(schema),
   });
 
+  const departements = useDepartements();
 
   // Pre-fill form fields if in update mode
   useEffect(() => {

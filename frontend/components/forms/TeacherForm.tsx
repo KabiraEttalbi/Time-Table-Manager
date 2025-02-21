@@ -8,7 +8,7 @@ import { z } from "zod";
 import InputField from "../InputField";
 import Image from "next/image";
 import axios from "axios";
-import {departements} from "@/app/(dashboard)/list/departements/page"
+import {useDepartements} from "@/app/(dashboard)/list/departements/page"
 import { teachers } from "@/app/(dashboard)/list/teachers/page";
 import { Departement } from "@/lib/data";
 import { useEffect, useState } from "react"; // Add useEffect for pre-filling form data
@@ -70,6 +70,8 @@ const TeacherForm = ({
   
     return `${year}-${month}-${day}`;
   };
+
+  const departements = useDepartements();
 
   // Pre-fill form fields if in update mode
   useEffect(() => {
