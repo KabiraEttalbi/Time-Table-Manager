@@ -2,20 +2,14 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { eventsData } from "@/lib/data";
+import { Event } from "@/lib/data";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { events } from "@/app/(dashboard)/list/events/page";
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-type Event = {
-  id: number;
-  studentId: string;
-  title: string;
-  time: Date;
-  description: string;
-};
 
 // French translations for the calendar
 const frenchTranslations = {
@@ -68,15 +62,15 @@ const EventCalendar = () => {
         <Image src="/moreDark.png" alt="" width={20} height={20} />
       </div>
       <div className="flex flex-col gap-4">
-        {eventsData.map((event: Event) => (
+        {events.map((event: Event) => (
           <div
             className="p-5 rounded-md border-2 border-gray-100 border-t-4 odd:border-t-lamaSky even:border-t-lamaPurple"
-            key={event.id}
+            key={event._id}
           >
             <div className="flex items-center justify-between">
               <h1 className="font-semibold text-gray-600">{event.title}</h1>
               <span className="text-gray-300 text-xs">
-                {formatDate(event.time)} {/* Format the date in French */}
+                {formatDate(new Date(event.date))} {/* Format the date in French */}
               </span>
             </div>
             <p className="mt-2 text-gray-400 text-sm">{event.description}</p>
