@@ -8,8 +8,8 @@ import { z } from "zod";
 import InputField from "../InputField";
 import Image from "next/image";
 import axios from "axios";
-import { options } from "@/app/(dashboard)/list/filieres/page";
-import { niveaux } from "@/app/(dashboard)/list/niveaux/page";
+import { useOptions } from "@/app/(dashboard)/list/filieres/page";
+import { useNiveaux } from "@/app/(dashboard)/list/niveaux/page";
 import { students } from "@/app/(dashboard)/list/students/page";
 import { Niveau, Option } from "@/lib/data";
 import { useEffect, useState } from "react"; // Add useEffect for pre-filling form data
@@ -118,7 +118,8 @@ const StudentForm = ({
       reader.readAsDataURL(file);
     }
   };
-
+  const options = useOptions();
+  const niveaux = useNiveaux()
 
   const onSubmit = handleSubmit(async (formData) => {
     try {

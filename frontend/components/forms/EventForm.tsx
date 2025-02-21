@@ -10,7 +10,7 @@ import axios from "axios";
 import { Salle} from "@/lib/data";
 import { useEffect } from "react"; // Add useEffect for pre-filling form data
 import { reservations } from "@/app/(dashboard)/list/reservations/page";
-import { salles } from "@/app/(dashboard)/list/salles/page";
+import { useSalles } from "@/app/(dashboard)/list/salles/page";
 
 const schema = z.object({
   title: z.string().min(1, { message: "Le titre est obligatoire !" }),
@@ -64,7 +64,8 @@ const EventForm = ({
     return `${year}-${month}-${day}`;
   };
 
-
+  const salles = useSalles();
+  
   // Pre-fill form fields if in update mode
   useEffect(() => {
     if (type === "update" && data) {

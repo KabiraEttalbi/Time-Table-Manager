@@ -7,6 +7,7 @@ import TableSearch from "@/components/TableSearch";
 import { Salle, sallesData } from "@/lib/data";
 import Image from "next/image";
 import { useUser } from "@/lib/AuthUser";
+import { useState, useEffect } from "react";
 
 const columns = [
   {
@@ -31,9 +32,23 @@ const columns = [
   },
 ];
 
-export const { salles } = await sallesData();
+export function useSalles() {
+  const [salles, setSalles] = useState<Salle[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const { salles } = await sallesData();
+      setSalles(salles);
+    }
+    fetchData();
+  }, []);
+
+  return salles; // On retourne `salles` pour pouvoir l'utiliser ailleurs
+}
 
 const SalleListPage = () => {
+
+  const salles = useSalles();
   const user = useUser(); // Retrieve the user object from context
   const role = user?.role || ''; // Extract the role from the user object
   

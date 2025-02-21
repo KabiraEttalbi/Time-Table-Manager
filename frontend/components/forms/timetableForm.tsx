@@ -5,13 +5,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import InputField from "../InputField";
 import axios from "axios";
 import { Module, Salle, Teacher } from "@/lib/data";
 import { reservations } from "@/app/(dashboard)/list/reservations/page";
-import { salles } from "@/app/(dashboard)/list/salles/page";
-import { modules } from "@/app/(dashboard)/list/modules/page";
-import { schedulesData} from "@/lib/data";
+import { useModules } from "@/app/(dashboard)/list/modules/page";
+import { useSalles } from "@/app/(dashboard)/list/salles/page";
 import { schedules } from "@/app/(dashboard)/list/students/[id]/page";
 import { useState } from "react";
 
@@ -49,6 +47,11 @@ const TimetableForm = ({
   } = useForm<Inputs>({
     resolver: zodResolver(schema),
   });
+
+  
+  const salles = useSalles();
+  const modules = useModules();
+  const [teacherModules, setTeacherModules] = useState<Module[]>([]);
 
   const [conflictError, setConflictError] = useState<string | null>(null);
 

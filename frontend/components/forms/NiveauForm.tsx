@@ -7,10 +7,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import InputField from "../InputField";
 import axios from "axios";
-import { options } from "@/app/(dashboard)/list/filieres/page";
+import { useOptions } from "@/app/(dashboard)/list/filieres/page";
 import { Option } from "@/lib/data";
 import { useEffect } from "react"; // Add useEffect for pre-filling form data
-import { niveaux } from "@/app/(dashboard)/list/niveaux/page";
+import { useNiveaux } from "@/app/(dashboard)/list/niveaux/page";
 
 const schema = z.object({
   name: z.string().min(1, { message: "Le nom est obligatoire !" }),
@@ -37,6 +37,8 @@ const NiveauForm = ({
     resolver: zodResolver(schema),
   });
 
+  const options = useOptions();
+  const niveaux = useNiveaux()
 
   // Pre-fill form fields if in update mode
   useEffect(() => {

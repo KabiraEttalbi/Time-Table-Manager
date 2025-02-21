@@ -7,6 +7,7 @@ import TableSearch from "@/components/TableSearch";
 import { useUser } from "@/lib/AuthUser";
 import { Departement, departementsData } from "@/lib/data";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 const columns = [
   {
@@ -23,11 +24,25 @@ const columns = [
   },
 ];
 
-export const { departements } = await departementsData(); 
+export function useDepartements() {
+  const [departements, setDepartements] = useState<Departement[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const { departements } = await departementsData();
+      setDepartements(departements);
+    }
+    fetchData();
+  }, []);
+
+  return departements; // On retourne `departements` pour pouvoir l'utiliser ailleurs
+}
+
 
 const Departementlistpage = () => {
   const user = useUser(); // Retrieve the user object from context
   const role = user?.role || ''; // Extract the role from the user object
+  const departements = useDepartements();
 
     const renderRow = (item: Departement) => (
         <tr

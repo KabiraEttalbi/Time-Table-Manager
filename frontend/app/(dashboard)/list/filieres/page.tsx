@@ -6,6 +6,7 @@ import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
 import {optionsData, Option} from "@/lib/data";
 import Image from "next/image";
+import {useState, useEffect} from "react";
 import { useUser } from "@/lib/AuthUser";
 
 const columns = [
@@ -31,11 +32,24 @@ const columns = [
   },
 ];
 
-export const { options } = await optionsData(); 
+export function useOptions() {
+  const [options, setOptions] = useState<Option[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const { options } = await optionsData();
+      setOptions(options);
+    }
+    fetchData();
+  }, []);
+
+  return options; // On retourne `Options` pour pouvoir l'utiliser ailleurs
+}
 
 const OptionListPage = () => {
   const user = useUser(); // Retrieve the user object from context
   const role = user?.role || ''; // Extract the role from the user object
+  const options = useOptions();
 
   const renderRow = (item: Option) => (
     <tr
