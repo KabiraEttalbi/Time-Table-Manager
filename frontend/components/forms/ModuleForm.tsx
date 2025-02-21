@@ -12,7 +12,7 @@ import { Niveau, Option, Teacher } from "@/lib/data";
 import { useEffect } from "react"; // Add useEffect for pre-filling form data
 import { useModules } from "@/app/(dashboard)/list/modules/page";
 import { useNiveaux } from "@/app/(dashboard)/list/niveaux/page";
-import { teachers } from "@/app/(dashboard)/list/teachers/page";
+import { useTeachers } from "@/app/(dashboard)/list/teachers/page";
 
 const schema = z.object({
   name: z.string().min(1, { message: "Le nom est obligatoire !" }),
@@ -60,7 +60,8 @@ const ModuleForm = ({
 
   const options = useOptions();
   const modules = useModules();
-  const niveaux = useNiveaux()
+  const niveaux = useNiveaux();
+  const teachers = useTeachers();
 
   const onSubmit = handleSubmit(async (formData) => {
     try {

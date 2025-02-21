@@ -3,7 +3,7 @@
 import Announcements from "@/components/Announcements";
 import BigCalendar from "@/components/BigCalender";
 import Image from "next/image";
-import { teachers } from "../page";
+import { useTeachers } from "../page";
 import { schedulesData } from "@/lib/data";
 import FormModal from "@/components/FormModal";
 import { useUser } from "@/lib/AuthUser";
@@ -17,8 +17,8 @@ const SingleTeacherPage = ({ params }) => {
 
   const user = useUser(); // Retrieve the user object from context
   const role = user?.role || ''; // Extract the role from the user object
-  
   const { id } = React.use(params) ; // Get teacher ID from URL
+  const teachers = useTeachers();
   const teacher = teachers.find((teacher) => teacher._id === id);
   
   

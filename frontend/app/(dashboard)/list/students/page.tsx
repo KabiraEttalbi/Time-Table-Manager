@@ -42,17 +42,17 @@ const columns = [
 ];
 
 export function useStudents() {
-  const [students, setStudentss] = useState<Student[]>([]);
+  const [students, setStudents] = useState<Student[]>([]);
 
   useEffect(() => {
     async function fetchData() {
       const { students } = await studentsData();
-      setStudentss(students);
+      setStudents(students);
     }
     fetchData();
   }, []);
 
-  return students; // On retourne `Studentss` pour pouvoir l'utiliser ailleurs
+  return students; // On retourne `Students` pour pouvoir l'utiliser ailleurs
 }
 
 
