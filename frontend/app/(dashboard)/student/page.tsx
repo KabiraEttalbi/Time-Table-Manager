@@ -4,12 +4,13 @@ import Announcements from "@/components/Announcements";
 import BigCalendar from "@/components/BigCalender";
 import EventCalendar from "@/components/EventCalendar";
 import { useUser } from "@/lib/AuthUser";
-import { students } from "../list/students/page";
+import { useStudents } from "../list/students/page";
 import { schedules } from "../list/students/[id]/page";
 
 const StudentPage = () => {
     const user = useUser(); // Retrieve the user object from context
     const id = user?._id || ''; // Extract the id from the user object
+    const students = useStudents();
     
     const student = students.find((student) => student.user._id === id);
     // Check if student exists
