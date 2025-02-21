@@ -26,14 +26,13 @@ The **Time Table Manager** is a web application designed to help users manage th
 ## Technologies Used
 
 ### Frontend
-- **React.js**: A JavaScript library for building user interfaces.
-- **Redux**: State management for React applications.
+- **Next.js**: Enables fast and scalable web applications with server-side rendering and static site generation.
+- **Redux**: Uses Redux for managing application state.
 - **Axios**: HTTP client for making API requests.
 - **Tailwind CSS**: A utility-first CSS framework for styling.
 
 ### Backend
 - **Node.js**: Runtime environment for the backend.
-- **Express.js**: Web framework for building APIs.
 - **MongoDB**: NoSQL database for storing data.
 - **Mongoose**: ODM (Object Data Modeling) library for MongoDB.
 - **JWT**: JSON Web Tokens for user authentication.
@@ -51,13 +50,13 @@ The **Time Table Manager** is a web application designed to help users manage th
    git clone https://github.com/KabiraEttalbi/Time-Table-Manager.git
    cd Time-Table-Manager
    ```
-1. **Initialize and update the submodules:**:
+2. **Initialize and update the submodules:**:
    ```bash
    git submodule init
    git submodule update
    ```
 
-2. **Install dependencies for both frontend and backend**:
+3. **Install dependencies for both frontend and backend**:
    ```bash
    # Install backend dependencies
    cd backend
@@ -68,7 +67,7 @@ The **Time Table Manager** is a web application designed to help users manage th
    npm install
    ```
 
-3. **Set up environment variables**:
+4. **Set up environment variables**:
    - Create a `.env` file in the `backend` directory and add the following variables:
      ```
      PORT=3001
@@ -81,19 +80,19 @@ The **Time Table Manager** is a web application designed to help users manage th
      JWT_SECRET=your_jwt_secret_key
      ```
 
-4. **Run the backend server**:
+5. **Run the backend server**:
    ```bash
    cd backend
    npm run start
    ```
 
-5. **Run the frontend application**:
+6. **Run the frontend application**:
    ```bash
    cd frontend
    npm run dev
    ```
 
-6. **Access the application**:
+7. **Access the application**:
    - The backend will be running at `http://localhost:3001`.
    - The frontend will be running at `http://localhost:3000`.
 
