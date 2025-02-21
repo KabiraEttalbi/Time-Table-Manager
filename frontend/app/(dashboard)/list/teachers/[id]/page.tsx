@@ -1,32 +1,30 @@
+"use client";
+
 import Announcements from "@/components/Announcements";
 import BigCalendar from "@/components/BigCalender";
 import Image from "next/image";
+import { teachers } from "../page";
 import { schedulesData } from "@/lib/data";
-import { teachers,modules } from "../page";
 import FormModal from "@/components/FormModal";
 import { useUser } from "@/lib/AuthUser";
+import React from "react";
 
 
 export const { schedules } = await schedulesData();
 console.log(schedules)
 
-const SingleTeacherPage = async ({ params }: { params: { id: string } }) => {
-    const user = useUser(); // Retrieve the user object from context
-    const role = user?.role || ''; // Extract the role from the user object
-  
-  const { id } = await params; // Get teacher ID from URL
+const SingleTeacherPage = ({ params }) => {
+  const user = useUser(); // Retrieve the user object from context
+  const role = user?.role || ''; // Extract the role from the user object
+
+  // Unwrap params using React.use()
+  const { id } = React.use(params); // Get teacher ID from URL
+
   const teacher = teachers.find((teacher) => teacher._id === id);
   // Check if teacher exists
   if (!teacher) {
     return <div>Teacher not found</div>;
   }
-  console.log("Teacher ID:", id);
-console.log("Modules:", modules);
-   // Filtrer les modules associés à l'enseignant
-   const teacherModules = modules.filter((module) => module.teacher._id === id);
-  console.log(teacherModules,"teacher modules ");
-
-
   const schedule = schedules.filter((schedule) => schedule.user._id === teacher?.user._id);
   // console.log(schedule)
   console.log(Object.keys(schedule));
@@ -120,7 +118,7 @@ console.log("Modules:", modules);
                 <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
                   Créer un emploi
                 </button>
-              )}  
+              )}
 
 
 
