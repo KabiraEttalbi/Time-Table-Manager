@@ -143,7 +143,7 @@ const TimetableForm = ({
             <option value="" hidden>Sélectionner un module</option>
             {teacherModules.map((module) => (
               <option key={module._id} value={module._id}>
-                {module.name}
+                {teacher?.modules?.find(m => m._id === module._id)?.name}
               </option>
             ))}
           </select>
