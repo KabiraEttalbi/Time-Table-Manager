@@ -3,16 +3,11 @@ import BigCalendar from "@/components/BigCalender";
 import Image from "next/image";
 import { students } from "../page";
 import { schedulesData } from "@/lib/data";
-import { useUser } from "@/lib/AuthUser";
 
 export const {schedules} = await schedulesData();
 console.log(schedules)
 
 const SingleStudentPage = async ({ params }: { params: { id: string } }) => {
-
-  const user = useUser(); // Retrieve the user object from context
-  const role = user?.role || ''; // Extract the role from the user object
-  
   const { id } = await params; // Get student ID from URL
   const student = students.find((student) => student._id === id);
   // Check if student exists
