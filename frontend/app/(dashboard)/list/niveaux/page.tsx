@@ -7,6 +7,7 @@ import TableSearch from "@/components/TableSearch";
 import {Niveau, niveauData } from "@/lib/data";
 import Image from "next/image";
 import { useUser } from "@/lib/AuthUser";
+import {useState, useEffect} from "react";
 
 const columns = [
   {
@@ -29,12 +30,25 @@ const columns = [
   },
 ];
 
-export const { niveaux } = await niveauData(); 
+export function useNiveaux() {
+  const [niveaux, setNiveaux] = useState<Niveau[]>([]);
+  useEffect(() => {
+    async function fetchData() {
+      const { niveaux } = await niveauData();
+      setNiveaux(niveaux);
+    }
+    fetchData();
+  }, []);
+
+  return niveaux; // On retourne `niveaux` pour pouvoir l'utiliser ailleurs
+}
+
 
 
 const ClassListPage = () => {
   const user = useUser(); // Retrieve the user object from context
   const role = user?.role || ''; // Extract the role from the user object
+  const niveaux = useNiveaux()
 
   const renderRow = (item: Niveau) => (
     <tr

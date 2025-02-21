@@ -10,7 +10,7 @@ import axios from "axios";
 import { useOptions } from "@/app/(dashboard)/list/filieres/page";
 import { Option } from "@/lib/data";
 import { useEffect } from "react"; // Add useEffect for pre-filling form data
-import { niveaux } from "@/app/(dashboard)/list/niveaux/page";
+import { useNiveaux } from "@/app/(dashboard)/list/niveaux/page";
 
 const schema = z.object({
   name: z.string().min(1, { message: "Le nom est obligatoire !" }),
@@ -38,6 +38,7 @@ const NiveauForm = ({
   });
 
   const options = useOptions();
+  const niveaux = useNiveaux()
 
   // Pre-fill form fields if in update mode
   useEffect(() => {
