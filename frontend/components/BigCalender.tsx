@@ -5,10 +5,9 @@ import moment, { localeData } from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useState } from "react";
 import "moment/locale/fr"; // Import French locale for moment
-import { Emploidutemps, role } from "@/lib/data";
+import { Emploidutemps} from "@/lib/data";
 import jsPDF from "jspdf";
 import "jspdf-autotable"; // Pour générer des tableaux dans jsPDF
-import FormModal from "./FormModal";
 
 // Set moment's locale to French
 moment.locale("fr");
@@ -104,7 +103,7 @@ const BigCalendar = ({ schedules }) => {
     ];
 
     // Préparer les données du tableau
-    const data = schedules.map((schedule: Emploidutemps) => [
+    const data = schedules?.map((schedule: Emploidutemps) => [
       schedule.jour, // Jour (Lundi, Mardi, etc.)
       `${schedule.heureDebut} - ${schedule.heureFin}`, // Heure
       schedule.salle?.name, // Salle

@@ -1,9 +1,12 @@
+'use client';
+
 import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import { Reservation, reservationsData, role } from "@/lib/data";
+import { Reservation, reservationsData } from "@/lib/data";
 import Image from "next/image";
+import { useUser } from "@/lib/AuthUser";
 
 const columns = [
   {
@@ -39,7 +42,10 @@ const columns = [
 
 export  const { reservations } = await reservationsData();
 
-const ReservationListPage = async () => {
+const ReservationListPage = () => {
+  const user = useUser(); // Retrieve the user object from context
+  const role = user?.role || ''; // Extract the role from the user object
+
   const renderRow = (item: Reservation) => (
     <tr
       key={item._id}

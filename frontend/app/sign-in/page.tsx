@@ -27,9 +27,7 @@ const LoginPage = () => {
       if (response.ok) {
         // Save the JWT token to cookies
         document.cookie = `access_token=${data.access_token}; path=/;`;
-        document.cookie = `user_role=${data.user.role}; path=/;`;
-        document.cookie = `user_nom=${data.user.nom}; path=/;`;
-        document.cookie = `user_prenom=${data.user.prenom}; path=/;`;
+        document.cookie = `user=${encodeURIComponent(JSON.stringify(data.user))}; path=/;`; // Store the entire user object
 
         // Redirect based on role
         if (data.user.role === 'admin') {
