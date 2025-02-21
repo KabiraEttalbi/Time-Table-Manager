@@ -13,14 +13,16 @@ import React from "react";
 export const { schedules } = await schedulesData();
 console.log(schedules)
 
-const SingleTeacherPage = ({ params }) => {
+const SingleTeacherPage = async ({ params }: { params: { id: string } }) => {
+  
   const user = useUser(); // Retrieve the user object from context
   const role = user?.role || ''; // Extract the role from the user object
 
-  // Unwrap params using React.use()
-  const { id } = React.use(params); // Get teacher ID from URL
-
+  const { id } = await params; // Get teacher ID from URL
   const teacher = teachers.find((teacher) => teacher._id === id);
+
+  
+  
   // Check if teacher exists
   if (!teacher) {
     return <div>Teacher not found</div>;
@@ -28,6 +30,7 @@ const SingleTeacherPage = ({ params }) => {
   const schedule = schedules.filter((schedule) => schedule.user._id === teacher?.user._id);
   // console.log(schedule)
   console.log(Object.keys(schedule));
+  const teacherModules = teacher.modules || []; // Utilisez les modules de l'enseignant
 
   if (teacher) {
     return (
@@ -119,10 +122,6 @@ const SingleTeacherPage = ({ params }) => {
                   Créer un emploi
                 </button>
               )}
-
-
-
-
 
             </div>
             <BigCalendar schedules={schedule} />

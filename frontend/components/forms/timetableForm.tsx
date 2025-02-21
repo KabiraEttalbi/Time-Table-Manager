@@ -39,7 +39,7 @@ const TimetableForm = ({
   data?: any;
   onSuccess?: () => void;
   teacher?: Teacher;
-  teacherModules?: Module[];
+ 
 }) => {
   const {
     register,
@@ -140,10 +140,10 @@ const TimetableForm = ({
             className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm"
             {...register("module")}
           >
-            <option value="" hidden>Sélectionner un module</option>
-            {teacherModules.map((module) => (
+            <option value="" >Sélectionner un module</option>
+            {teacher?.modules?.map((module) => (
               <option key={module._id} value={module._id}>
-                {module.name}
+                 {module.name}
               </option>
             ))}
           </select>
