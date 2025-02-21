@@ -4,10 +4,12 @@ import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import { Teacher, teachersData, modulesData } from "@/lib/data";
+import { Teacher, teachersData } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 import { useUser } from "@/lib/AuthUser";
+import { useEffect, useState } from "react";
+import { useModules } from "../modules/page";
 
 const columns = [
   {
@@ -40,12 +42,26 @@ const columns = [
   },
 ];
 
-export const {teachers} = await teachersData();
-export const {modules} = await modulesData();
+
+export function useTeachers() {
+  const [teachers, setTeachers] = useState<Teacher[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const { teachers } = await teachersData();
+      setTeachers(teachers);
+    }
+    fetchData();
+  }, []);
+
+  return teachers; // On retourne `teachers` pour pouvoir l'utiliser ailleurs
+}
 
 const TeacherListPage = () => {
   const user = useUser(); // Retrieve the user object from context
   const role = user?.role || ''; // Extract the role from the user object
+  const teachers = useTeachers();
+  const modules = useModules();
 
   const renderRow = (item: Teacher) => (
     <tr
