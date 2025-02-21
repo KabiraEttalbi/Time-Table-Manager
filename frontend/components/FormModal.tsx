@@ -13,6 +13,8 @@ import SalleForm from "./forms/SalleForm";
 import ReservationForm from "./forms/ReservationForm";
 import EventForm from "./forms/EventForm";
 import TimetableForm from "./forms/timetableForm";
+import { Teacher } from "@/lib/data";
+
 
 
 
@@ -25,7 +27,7 @@ const StudentForm = dynamic(() => import("./forms/StudentForm"), {
 
 
 const forms: {
-  [key: string]: (type: "create" | "update", data?: any, onSuccess?: () => void,) => JSX.Element;
+  [key: string]: (type: "create" | "update", data?: any, onSuccess?: () => void,teacher?: any) => JSX.Element;
 } = {
   teachers: (type, data, onSuccess) => <TeacherForm type={type} data={data} onSuccess={onSuccess} />,
   students: (type, data, onSuccess) => <StudentForm type={type} data={data} onSuccess={onSuccess} />,
@@ -37,7 +39,7 @@ const forms: {
   salle: (type, data, onSuccess) => <SalleForm type={type} data={data} onSuccess={onSuccess} />,
   reservation: (type, data, onSuccess) => <ReservationForm type={type} data={data} onSuccess={onSuccess} />,
   event: (type, data, onSuccess) => <EventForm type={type} data={data} onSuccess={onSuccess} />,
-  timetable: (type, data, onSuccess ) => <TimetableForm type={type} data={data} onSuccess={onSuccess} />,
+  timetable: (type, data, onSuccess,teacher ) => <TimetableForm type={type} data={data} onSuccess={onSuccess} teacher={teacher} />,
 };
 
 
@@ -46,6 +48,7 @@ const FormModal = ({
   type,
   data,
   id,
+  teacher,
 
 }: {
   table:
@@ -65,6 +68,7 @@ const FormModal = ({
   type: "create" | "update" | "delete";
   data?: any;
   id?: string;
+  teacher?: Teacher;
   
 
 }) => {
@@ -110,7 +114,7 @@ const FormModal = ({
         </button>
       </form>
     ) : type === "create" || type === "update" ? (
-      forms[table](type, { ...data, _id: id }, () => setOpen(false)) // Pass the `id` as part of the `data` object
+      forms[table](type, { ...data, _id: id }, () => setOpen(false)      ) // Pass the `id` as part of the `data` object
     ) : (
       "Form not found!"
     );
