@@ -6,7 +6,7 @@ import { z } from "zod";
 import InputField from "../InputField";
 import axios from "axios";
 import { useEffect } from "react";
-import { salles } from "@/app/(dashboard)/list/salles/page";
+import { useSalles } from "@/app/(dashboard)/list/salles/page";
 
 
 // Schéma de validation
@@ -40,6 +40,9 @@ const SalleForm = ({
   } = useForm<Inputs>({
     resolver: zodResolver(salleSchema),
   });
+
+  const salles = useSalles();
+  
 
   // Pré-remplir le formulaire en mode "update"
   useEffect(() => {
