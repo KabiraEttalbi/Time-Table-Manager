@@ -51,6 +51,11 @@ The **Time Table Manager** is a web application designed to help users manage th
    git clone https://github.com/KabiraEttalbi/Time-Table-Manager.git
    cd Time-Table-Manager
    ```
+1. **Initialize and update the submodules:**:
+   ```bash
+   git submodule init
+   git submodule update
+   ```
 
 2. **Install dependencies for both frontend and backend**:
    ```bash
@@ -66,30 +71,31 @@ The **Time Table Manager** is a web application designed to help users manage th
 3. **Set up environment variables**:
    - Create a `.env` file in the `backend` directory and add the following variables:
      ```
-     PORT=3000
+     PORT=3001
      MONGO_URI=your_mongodb_connection_string
      JWT_SECRET=your_jwt_secret_key
      ```
    - Create a `.env` file in the `frontend` directory and add the following variable:
      ```
-     REACT_APP_API_URL=http://localhost:3000
+     NEXT_APP_API_URL=http://localhost:3000
+     JWT_SECRET=your_jwt_secret_key
      ```
 
 4. **Run the backend server**:
    ```bash
    cd backend
-   npm start
+   npm run start
    ```
 
 5. **Run the frontend application**:
    ```bash
    cd frontend
-   npm start
+   npm run dev
    ```
 
 6. **Access the application**:
-   - The backend will be running at `http://localhost:3000`.
-   - The frontend will be running at `http://localhost:3001`.
+   - The backend will be running at `http://localhost:3001`.
+   - The frontend will be running at `http://localhost:3000`.
 
 ## Frontend
 
