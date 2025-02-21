@@ -13,7 +13,7 @@ import SalleForm from "./forms/SalleForm";
 import ReservationForm from "./forms/ReservationForm";
 import EventForm from "./forms/EventForm";
 import TimetableForm from "./forms/timetableForm";
-import { Module } from "@/lib/data";
+
 
 const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
   loading: () => <h1>Chargement...</h1>,
@@ -24,7 +24,7 @@ const StudentForm = dynamic(() => import("./forms/StudentForm"), {
 
 
 const forms: {
-  [key: string]: (type: "create" | "update", data?: any, onSuccess?: () => void, teacherModules?: Module[]) => JSX.Element;
+  [key: string]: (type: "create" | "update", data?: any, onSuccess?: () => void,) => JSX.Element;
 } = {
   teachers: (type, data, onSuccess) => <TeacherForm type={type} data={data} onSuccess={onSuccess} />,
   students: (type, data, onSuccess) => <StudentForm type={type} data={data} onSuccess={onSuccess} />,
@@ -36,7 +36,7 @@ const forms: {
   salle: (type, data, onSuccess) => <SalleForm type={type} data={data} onSuccess={onSuccess} />,
   reservation: (type, data, onSuccess) => <ReservationForm type={type} data={data} onSuccess={onSuccess} />,
   event: (type, data, onSuccess) => <EventForm type={type} data={data} onSuccess={onSuccess} />,
-  timetable: (type, data, onSuccess,teacherModules) => <TimetableForm type={type} data={data} onSuccess={onSuccess} teacherModules={teacherModules} />,
+  timetable: (type, data, onSuccess) => <TimetableForm type={type} data={data} onSuccess={onSuccess}  />,
 };
 
 
@@ -45,7 +45,7 @@ const FormModal = ({
   type,
   data,
   id,
- teacherModules
+
 }: {
   table:
     | "teachers"
@@ -64,7 +64,7 @@ const FormModal = ({
   type: "create" | "update" | "delete";
   data?: any;
   id?: string;
-  teacherModules?: Module[];
+
 }) => {
   const size = type === "create" ? "w-8 h-8" : "w-7 h-7";
   const bgColor =
