@@ -5,14 +5,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import InputField from "../InputField";
 import axios from "axios";
 import { Module, Salle, Teacher } from "@/lib/data";
 import { useEffect, useState } from "react";
 import { reservations } from "@/app/(dashboard)/list/reservations/page";
 import { useModules } from "@/app/(dashboard)/list/modules/page";
 import { useSalles } from "@/app/(dashboard)/list/salles/page";
-import { schedulesData} from "@/lib/data";
 import { schedules } from "@/app/(dashboard)/list/students/[id]/page";
 
 const morningStartHours = ["08:00", "09:00", "10:00", "11:00"];
