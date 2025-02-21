@@ -30,6 +30,7 @@ const SingleTeacherPage = async ({ params }: { params: { id: string } }) => {
   const schedule = schedules.filter((schedule) => schedule.user._id === teacher?.user._id);
   // console.log(schedule)
   console.log(Object.keys(schedule));
+  const teacherModules = teacher.modules || []; // Utilisez les modules de l'enseignant
 
   if (teacher) {
     return (
@@ -121,10 +122,6 @@ const SingleTeacherPage = async ({ params }: { params: { id: string } }) => {
                   Créer un emploi
                 </button>
               )}
-
-
-
-
 
             </div>
             <BigCalendar schedules={schedule} />
