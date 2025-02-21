@@ -3,13 +3,13 @@ import { useForm, useWatch } from "react-hook-form"; // Import useWatch
 import { z } from "zod";
 import InputField from "../InputField";
 import axios from "axios";
-import { Salle, Module } from "@/lib/data";
+import { Salle, Module, sallesData, modulesData, reservationsData } from "@/lib/data";
 import { useEffect } from "react";
-import { useReservations } from "@/app/(dashboard)/list/reservations/page";
-import { useSalles } from "@/app/(dashboard)/list/salles/page";
-import { useModules } from "@/app/(dashboard)/list/modules/page";
 import { useUser } from "@/lib/AuthUser";
 
+const {salles} = await sallesData();
+const {modules} = await modulesData();
+const {reservations} = await reservationsData();
 
 const schema = z.object({
   title: z.string().min(1, { message: "Le titre est obligatoire !" }),
@@ -74,11 +74,6 @@ const ReservationForm = ({
     const day = String(d.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
-
-  const salles = useSalles();
-  const modules = useModules();
-  const reservations = useReservations();
-
 
   // Pre-fill form fields if in update mode
   useEffect(() => {

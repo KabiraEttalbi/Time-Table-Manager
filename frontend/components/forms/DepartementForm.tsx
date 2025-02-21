@@ -7,8 +7,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import InputField from "../InputField";
 import axios from "axios";
-import { useDepartements } from "@/app/(dashboard)/list/departements/page";
 import { useEffect } from "react"; // Add useEffect for pre-filling form data
+import { departementsData } from "@/lib/data";
+
+const {departements} = await departementsData();
 
 const schema = z.object({
   name: z.string().min(1, { message: "Le nom est obligatoire !" }),
@@ -33,8 +35,6 @@ const DepartementForm = ({
   } = useForm<Inputs>({
     resolver: zodResolver(schema),
   });
-
-  const departements = useDepartements();
 
   // Pre-fill form fields if in update mode
   useEffect(() => {

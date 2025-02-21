@@ -8,10 +8,11 @@ import { z } from "zod";
 import InputField from "../InputField";
 import Image from "next/image";
 import axios from "axios";
-import {useDepartements} from "@/app/(dashboard)/list/departements/page"
-import { useTeachers } from "@/app/(dashboard)/list/teachers/page";
-import { Departement } from "@/lib/data";
+import { Departement, departementsData, teachersData } from "@/lib/data";
 import { useEffect, useState } from "react"; // Add useEffect for pre-filling form data
+
+const {departements} = await departementsData();
+const {teachers} = await teachersData();
 
 const schema = z.object({
   username: z
@@ -71,8 +72,6 @@ const TeacherForm = ({
     return `${year}-${month}-${day}`;
   };
 
-  const departements = useDepartements();
-  const teachers = useTeachers();
 
   // Pre-fill form fields if in update mode
   useEffect(() => {

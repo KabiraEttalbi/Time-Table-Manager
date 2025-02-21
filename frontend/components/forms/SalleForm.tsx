@@ -6,13 +6,14 @@ import { z } from "zod";
 import InputField from "../InputField";
 import axios from "axios";
 import { useEffect } from "react";
-import { useSalles } from "@/app/(dashboard)/list/salles/page";
+import {sallesData} from '@/lib/data'
 
+const { salles } = await sallesData();
 
 // Schéma de validation
 const salleSchema = z.object({
   name: z.string().min(1, { message: "Le nom de la salle est obligatoire !" }),
-  capacite: z.coerce
+  capacite: z.coerce 
     .number()
     .min(1, { message: "La capacité doit être supérieure à 0 !" }),
   type: z.enum(["amphi", "normal", "haull"], {
@@ -40,9 +41,6 @@ const SalleForm = ({
   } = useForm<Inputs>({
     resolver: zodResolver(salleSchema),
   });
-
-  const salles = useSalles();
-  
 
   // Pré-remplir le formulaire en mode "update"
   useEffect(() => {

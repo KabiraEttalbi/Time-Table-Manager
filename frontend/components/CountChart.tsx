@@ -1,10 +1,11 @@
 "use client";
-import { useStudents } from "@/app/(dashboard)/list/students/page";
+import { studentsData } from "@/lib/data";
 import Image from "next/image";
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 
+const {students} = await studentsData(); // Ensure students is not undefined
+
 const CountChart = () => {
-  const students = useStudents(); // Ensure students is not undefined
   const data = [
     {
       name: "Total",

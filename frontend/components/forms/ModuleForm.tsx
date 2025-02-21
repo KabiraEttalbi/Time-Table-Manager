@@ -7,12 +7,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import InputField from "../InputField";
 import axios from "axios";
-import { useOptions } from "@/app/(dashboard)/list/filieres/page";
-import { Niveau, Option, Teacher } from "@/lib/data";
+import { modulesData, Niveau, niveauData, Option, optionsData, Teacher, teachersData } from "@/lib/data";
 import { useEffect } from "react"; // Add useEffect for pre-filling form data
-import { useModules } from "@/app/(dashboard)/list/modules/page";
-import { useNiveaux } from "@/app/(dashboard)/list/niveaux/page";
-import { useTeachers } from "@/app/(dashboard)/list/teachers/page";
+
+const {options} = await optionsData();
+const {modules} = await modulesData();
+const {niveaux} = await niveauData();
+const {teachers} = await teachersData();
 
 const schema = z.object({
   name: z.string().min(1, { message: "Le nom est obligatoire !" }),
@@ -57,11 +58,6 @@ const ModuleForm = ({
       }
     }
   }, [type, data, setValue]);
-
-  const options = useOptions();
-  const modules = useModules();
-  const niveaux = useNiveaux();
-  const teachers = useTeachers();
 
   const onSubmit = handleSubmit(async (formData) => {
     try {

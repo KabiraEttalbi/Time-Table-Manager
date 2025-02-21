@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Event } from "@/lib/data";
+import { Event, eventsData } from "@/lib/data";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { useEvents } from "@/app/(dashboard)/list/events/page";
+
+const {events} = await eventsData();
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -43,7 +44,6 @@ const formatDate = (date: Date) => {
 
 const EventCalendar = () => {
   const [value, onChange] = useState<Value>(new Date());
-  const events = useEvents();
 
   return (
     <div className="bg-white p-4 rounded-md">
