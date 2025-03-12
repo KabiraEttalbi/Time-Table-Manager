@@ -18,6 +18,7 @@ const Navbar = () => {
       await fetch('http://localhost:3001/auth/logout', {
         method: 'POST',
         headers: {
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem('access_token')}`,
         },
       });
