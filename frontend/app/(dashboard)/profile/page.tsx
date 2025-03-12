@@ -3,16 +3,15 @@
 
 import { useUser } from "@/lib/AuthUser";
 import { useState, useEffect } from "react";
-import { useStudents } from "../list/students/page";
-import { useTeachers } from "../list/teachers/page";
-import { useModules } from "../list/modules/page";
+import { studentsData, teachersData, modulesData } from '@/lib/data';
+
+const {teachers} = await teachersData();
+const {students} = await studentsData();
+const {modules} = await modulesData(); // Assuming you have a hook to fetch all modules
 
 const ProfilePage = () => {
   const user = useUser();
   const [item, setItem] = useState(null);
-  const teachers = useTeachers();
-  const students = useStudents();
-  const modules = useModules(); // Assuming you have a hook to fetch all modules
 
   useEffect(() => {
     if (user?._id) {
@@ -79,7 +78,7 @@ const ProfilePage = () => {
             {item.type === 'teacher' && (
               <div className="space-y-2">
                 <p><span className="font-medium">Département:</span> {item.data.department.name}</p>
-                {/* <p>
+                <p>
                   <span className="font-medium">Modules:</span>{" "}
                   {item.data.modules
                     ?.map(moduleId => {
@@ -88,7 +87,7 @@ const ProfilePage = () => {
                     })
                     .filter(name => name !== null)
                     .join(', ')}
-                </p> */}
+                </p>
                 <p><span className="font-medium">Adresse:</span> {item.data.address}</p>
               </div>
             )}
